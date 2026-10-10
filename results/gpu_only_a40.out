@@ -1,0 +1,6 @@
+host=g3050
+GPU 0: NVIDIA A40 (UUID: GPU-9a3f6f1a-fa29-d1fe-6e86-35aa20054c2d)
+Offload devices visible = 1, target region ran on the GPU
+GPU dot product =     499999500000.0
+Expected        =     499999500000.0
+Verification: PASS   (time   0.000084 s)

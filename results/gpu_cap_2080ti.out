@@ -1,0 +1,63 @@
+nodes: g3004,z3001
+GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-1cd279a1-1b0b-f1a5-9ff5-bfe5e85a9562)
+GPU 0: NVIDIA GeForce RTX 2080 Ti (UUID: GPU-bc7487fa-fb27-0de8-9d95-909f67d4346f)
+/sw/nvhpc/2024_245/Linux_x86_64/24.5/compilers/bin/nsys
+/sw/nvhpc/2024_245/Linux_x86_64/24.5/compilers/bin/ncu
+dot_hybrid_gpu_cap:
+     44, !$omp target
+         44, Generating "nvkernel_MAIN__F1L44_2" GPU kernel
+     44, Generating map(from:onhost) 
+     76, Generating target enter data map(create: a(:),b(:),lbuf(:),gbuf(:))
+         Generating target enter data map(to: acc)
+     79, !$omp target teams distribute parallel do num_teams(nteams) thread_limit(nthr)
+         79, Generating "nvkernel_MAIN__F1L79_4" GPU kernel
+     79, Generating implicit map(tofrom:b(:),a(:)) 
+     86, !$omp target teams distribute parallel do num_teams(nteams) thread_limit(nthr)
+         86, Generating "nvkernel_MAIN__F1L86_6" GPU kernel
+     86, Generating implicit map(tofrom:a(:),b(:),acc) 
+     92, !$omp target teams distribute parallel do
+         92, Generating "nvkernel_MAIN__F1L92_8" GPU kernel
+     92, Generating implicit map(tofrom:b(:),a(:)) 
+     99, !$omp target teams distribute parallel do
+         99, Generating "nvkernel_MAIN__F1L99_10" GPU kernel
+     99, Generating implicit map(tofrom:a(:),b(:),acc) 
+    109, !$omp target teams num_teams(nteams) thread_limit(nthr)
+        109, Generating "nvkernel_MAIN__F1L109_12" GPU kernel
+    109, Generating map(from:nthr_seen,nteams_seen) 
+    120, !$omp target teams
+        120, Generating "nvkernel_MAIN__F1L120_14" GPU kernel
+    120, Generating map(from:nthr_seen,nteams_seen) 
+    134, !$omp target
+        134, Generating "nvkernel_MAIN__F1L134_16" GPU kernel
+    134, Generating implicit map(tofrom:lbuf(:),gbuf(:),acc) 
+    140, Generating update from(lbuf(:))
+    149, Generating update from(gbuf(:))
+    164, Generating target exit data map(delete: a(:),b(:),lbuf(:),gbuf(:),acc) finalize
+===== A: staged, no cap
+rank 1: target region ran on the GPU
+rank 1: teams = 68, threads per team = 992, GPU threads = 67456
+rank 0: target region ran on the GPU
+rank 0: teams = 68, threads per team = 992, GPU threads = 67456
+mode = staged, ranks = 2
+Dot product =     499999500000.0
+Expected    =     499999500000.0
+ Verification: PASS
+===== B: staged, capped at 26 teams x 128 threads = 3328 GPU threads
+rank 0: target region ran on the GPU
+rank 1: target region ran on the GPU
+rank 1: teams = 26, threads per team = 128, GPU threads = 3328
+rank 0: teams = 26, threads per team = 128, GPU threads = 3328
+mode = staged, ranks = 2
+Dot product =     499999500000.0
+Expected    =     499999500000.0
+ Verification: PASS
+===== C: aware, capped
+rank 0: target region ran on the GPU
+rank 1: target region ran on the GPU
+rank 1: teams = 26, threads per team = 128, GPU threads = 3328
+rank 0: teams = 26, threads per team = 128, GPU threads = 3328
+CPU copy right after reduce =               -1.0
+mode = aware, ranks = 2
+Dot product =     499999500000.0
+Expected    =     499999500000.0
+ Verification: PASS

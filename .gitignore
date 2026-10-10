@@ -1,0 +1,17 @@
+old/
+.DS_Store
+*.o
+*.mod
+*.nsys-rep
+*.sqlite
+slurm-*.out
+# job output in this folder, but keep the saved ones in results/
+*.out
+!results/*.out
+# compiled binaries
+dot_serial
+dot_mpi
+dot_omp
+dot_hybrid
+dot_gpu_only
+dot_hybrid_gpu_cap

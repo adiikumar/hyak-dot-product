@@ -1,0 +1,21 @@
+nodes=2 ntasks=4 cpus_per_task=2
+===== 3a: OpenMP only, one node
+Threads requested = 1, used = 1
+OpenMP dot product =     499999500000.0
+Expected           =     499999500000.0
+Verification: PASS   (time   0.001338 s)
+Threads requested = 2, used = 2
+OpenMP dot product =     499999500000.0
+Expected           =     499999500000.0
+Verification: PASS   (time   0.013212 s)
+===== 3b: MPI + OpenMP, 4 ranks
+--- OMP_NUM_THREADS=1
+MPI ranks = 4, OpenMP threads per rank = 1
+Hybrid dot product =     499999500000.0
+Expected           =     499999500000.0
+Verification: PASS   (time   0.012709 s)
+--- OMP_NUM_THREADS=2
+MPI ranks = 4, OpenMP threads per rank = 2
+Hybrid dot product =     499999500000.0
+Expected           =     499999500000.0
+Verification: PASS   (time   0.004209 s)
