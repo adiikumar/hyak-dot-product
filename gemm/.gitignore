@@ -1,0 +1,20 @@
+# Slurm output and logs
+*.out
+*.log
+
+# Fortran compiler files
+*.o
+*.mod
+*.smod
+
+# Compiled executables
+gemm_serial_blas
+gemm_serial_loop
+gemm_serial_loop_[0-9]*
+gemm_mpi_blas
+gemm_mpi_loop
+gemm_mpi_loop_[0-9]*
+gemm_mpi_omp_blas
+gemm_mpi_omp_loop
+gemm_mpi_omp_loop_[0-9]*
+gemm_mpi_gpu_omp
