@@ -1,9 +1,0 @@
-nodes=2 cpus_on_node=4 ntasks=8
---- rank placement (ranks per node)
-      4 n3400
-      4 n3401
---- MPI dot product, 8 ranks
-MPI ranks = 8
-MPI dot product =     499999500000.0
-Expected        =     499999500000.0
- Verification: PASS

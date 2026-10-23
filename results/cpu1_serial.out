@@ -1,4 +1,0 @@
-nodes=1 cpus_on_node=1 host=n3355
-Serial dot product =     499999500000.0
-Expected           =     499999500000.0
- Verification: PASS
