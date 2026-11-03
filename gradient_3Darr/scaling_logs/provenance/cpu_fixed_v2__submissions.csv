@@ -1,0 +1,13 @@
+job_name,nodes,mpi_ranks,threads_per_rank,job_id
+mpi_nodes2,2,64,1,42732317
+omp_t1_nodes2,2,64,1,42732318
+omp_t2_nodes2,2,32,2,42732319
+omp_t4_nodes2,2,16,4,42732320
+mpi_nodes4,4,128,1,42732321
+omp_t1_nodes4,4,128,1,42732322
+omp_t2_nodes4,4,64,2,42732323
+omp_t4_nodes4,4,32,4,42732324
+mpi_nodes8,8,256,1,42732325
+omp_t1_nodes8,8,256,1,42732326
+omp_t2_nodes8,8,128,2,42732327
+omp_t4_nodes8,8,64,4,42732328

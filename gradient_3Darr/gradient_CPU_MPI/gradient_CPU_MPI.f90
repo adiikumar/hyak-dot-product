@@ -1,226 +1,246 @@
-program pressure_gradient_mpi
+program gradient_CPU_MPI
+  use iso_fortran_env, only: real64
   use mpi
   implicit none
 
-  integer, parameter :: n = 64
+  integer :: ierr, rank, nranks, n, ny, offset
+  integer :: prev, next, q, rem, stat, ios
+  integer :: i, j, k, status(MPI_STATUS_SIZE)
+  character(len=64) :: arg
 
-  integer :: ierr, rank, nprocs, status(MPI_STATUS_SIZE)
-  integer :: nloc, base, rem, istart
-  integer :: left, right
-  integer :: i, j, k
-  real(8) :: pi, h, x, y, z, wave
-  real(8) :: exact_x, exact_y, exact_z
-  real(8) :: error_local, error_global
-  real(8) :: reference_local, reference_global
-  real(8) :: relative_error, expected_error
+  real(real64), allocatable :: p(:,:,:)
+  real(real64), allocatable :: gx(:,:,:), gy(:,:,:), gz(:,:,:)
+  real(real64), allocatable :: sendlo(:,:), sendhi(:,:)
+  real(real64), allocatable :: recvlo(:,:), recvhi(:,:)
 
-  real(8), allocatable :: p(:,:,:)
-  real(8), allocatable :: gx(:,:,:), gy(:,:,:), gz(:,:,:)
-  real(8), allocatable :: send_left(:,:), send_right(:,:)
-  real(8), allocatable :: recv_left(:,:), recv_right(:,:)
-
-  ! STEP 1: Initialize MPI
+  real(real64) :: h, twopi, x, y, z
+  real(real64) :: ex, ey, ez
+  real(real64) :: linf, l1, l2, exact2
+  real(real64) :: global_linf, global_l1, global_l2, global_exact2
+  real(real64) :: relative_l2, expected
+  real(real64) :: t0, t1, t2, t3, t4
+  real(real64) :: times(5), max_times(5)
 
   call MPI_Init(ierr)
   call MPI_Comm_rank(MPI_COMM_WORLD,rank,ierr)
-  call MPI_Comm_size(MPI_COMM_WORLD,nprocs,ierr)
+  call MPI_Comm_size(MPI_COMM_WORLD,nranks,ierr)
 
-  if (nprocs > n) then
-    if (rank == 0) print *, 'Too many MPI ranks'
+  n = 2048
+
+  if (command_argument_count() >= 1) then
+    call get_command_argument(1,arg)
+    read(arg,*,iostat=ios) n
+    if (ios /= 0) n = -1
+  end if
+
+  if (n < 4 .or. nranks > n) then
+    if (rank == 0) print *, 'Invalid N or MPI rank count'
     call MPI_Abort(MPI_COMM_WORLD,1,ierr)
   end if
 
-  pi = acos(-1.0d0)
-  wave = 2.0d0*pi
-  h = 1.0d0/dble(n)
+  h = 1.0_real64/real(n,real64)
+  twopi = 2.0_real64*acos(-1.0_real64)
 
-  ! STEP 2: Divide the domain along x
+  ! Y-slab decomposition.
+  q = n/nranks
+  rem = mod(n,nranks)
 
-  base = n/nprocs
-  rem = mod(n,nprocs)
+  ny = q
+  if (rank < rem) ny = ny+1
 
-  nloc = base
-  if (rank < rem) nloc = nloc + 1
+  offset = rank*q + min(rank,rem)
 
-  istart = rank*base + min(rank,rem)
+  prev = modulo(rank-1,nranks)
+  next = modulo(rank+1,nranks)
 
-  ! Identify periodic neighboring MPI ranks
+  call MPI_Barrier(MPI_COMM_WORLD,ierr)
+  t0 = MPI_Wtime()
 
-  left  = modulo(rank-1,nprocs)
-  right = modulo(rank+1,nprocs)
+  allocate(p(n+2,ny+2,n+2), &
+           gx(n,ny,n), gy(n,ny,n), gz(n,ny,n), &
+           sendlo(n,n), sendhi(n,n), &
+           recvlo(n,n), recvhi(n,n), stat=stat)
 
-  ! STEP 3: Allocate local arrays with ghost cells
-
-  allocate(p(0:nloc+1,0:n+1,0:n+1))
-  allocate(gx(nloc,n,n),gy(nloc,n,n),gz(nloc,n,n))
-
-  allocate(send_left(n,n),send_right(n,n))
-  allocate(recv_left(n,n),recv_right(n,n))
-
-  p = 0.0d0
-
-  ! STEP 4: Initialize the local pressure field
-
-  do k = 1, n
-    z = dble(k-1)*h
-
-    do j = 1, n
-      y = dble(j-1)*h
-
-      do i = 1, nloc
-        x = dble(istart+i-1)*h
-
-        p(i,j,k) = sin(wave*x)*cos(wave*y)*sin(wave*z)
-
-      end do
-    end do
-  end do
-
-  ! STEP 5: Pack x-boundary planes into contiguous buffers
-
-  do k = 1, n
-    do j = 1, n
-
-      send_left(j,k)  = p(1,j,k)
-      send_right(j,k) = p(nloc,j,k)
-
-    end do
-  end do
-
-  ! STEP 6: Exchange boundary planes with MPI
-
-  ! Send rightmost interior plane to the right neighbor.
-  ! Receive the left neighbor's rightmost plane.
-
-  call MPI_Sendrecv(send_right,n*n,MPI_DOUBLE_PRECISION, &
-                    right,10, &
-                    recv_left,n*n,MPI_DOUBLE_PRECISION, &
-                    left,10,MPI_COMM_WORLD,status,ierr)
-
-  ! Send leftmost interior plane to the left neighbor.
-  ! Receive the right neighbor's leftmost plane.
-
-  call MPI_Sendrecv(send_left,n*n,MPI_DOUBLE_PRECISION, &
-                    left,11, &
-                    recv_right,n*n,MPI_DOUBLE_PRECISION, &
-                    right,11,MPI_COMM_WORLD,status,ierr)
-
-  ! STEP 7: Copy received values into x-ghost cells
-
-  do k = 1, n
-    do j = 1, n
-
-      p(0,j,k)      = recv_left(j,k)
-      p(nloc+1,j,k) = recv_right(j,k)
-
-    end do
-  end do
-
-  ! STEP 8: Apply local periodic boundaries in y and z
-
-  ! Y-direction
-
-  do k = 1, n
-    do i = 1, nloc
-
-      p(i,0,k)   = p(i,n,k)
-      p(i,n+1,k) = p(i,1,k)
-
-    end do
-  end do
-
-  ! Z-direction
-
-  do j = 1, n
-    do i = 1, nloc
-
-      p(i,j,0)   = p(i,j,n)
-      p(i,j,n+1) = p(i,j,1)
-
-    end do
-  end do
-
-  ! STEP 9: Compute numerical gradient using FDM
-
-  do k = 1, n
-    do j = 1, n
-      do i = 1, nloc
-
-        gx(i,j,k) = (p(i+1,j,k)-p(i-1,j,k))/(2.0d0*h)
-
-        gy(i,j,k) = (p(i,j+1,k)-p(i,j-1,k))/(2.0d0*h)
-
-        gz(i,j,k) = (p(i,j,k+1)-p(i,j,k-1))/(2.0d0*h)
-
-      end do
-    end do
-  end do
-
-  ! STEP 10: Compare against the analytical gradient
-
-  error_local = 0.0d0
-  reference_local = 0.0d0
-
-  do k = 1, n
-    z = dble(k-1)*h
-
-    do j = 1, n
-      y = dble(j-1)*h
-
-      do i = 1, nloc
-        x = dble(istart+i-1)*h
-
-        exact_x = wave*cos(wave*x)*cos(wave*y)*sin(wave*z)
-        exact_y = -wave*sin(wave*x)*sin(wave*y)*sin(wave*z)
-        exact_z = wave*sin(wave*x)*cos(wave*y)*cos(wave*z)
-
-        error_local = error_local + &
-          (gx(i,j,k)-exact_x)**2 + &
-          (gy(i,j,k)-exact_y)**2 + &
-          (gz(i,j,k)-exact_z)**2
-
-        reference_local = reference_local + &
-          exact_x**2 + exact_y**2 + exact_z**2
-
-      end do
-    end do
-  end do
-
-  ! STEP 11: Combine error sums across MPI ranks
-
-  call MPI_Reduce(error_local,error_global,1, &
-                  MPI_DOUBLE_PRECISION,MPI_SUM,0, &
-                  MPI_COMM_WORLD,ierr)
-
-  call MPI_Reduce(reference_local,reference_global,1, &
-                  MPI_DOUBLE_PRECISION,MPI_SUM,0, &
-                  MPI_COMM_WORLD,ierr)
-
-  ! STEP 12: Global verification on rank 0
-
-  if (rank == 0) then
-
-    relative_error = sqrt(error_global/reference_global)
-
-    expected_error = abs(1.0d0-sin(wave*h)/(wave*h))
-
-    print *, 'Grid N = ', n
-    print *, 'MPI ranks = ', nprocs
-    print *, 'Relative L2 error = ', relative_error
-    print *, 'Expected L2 error = ', expected_error
-
-    if (abs(relative_error-expected_error) < 1.0d-10) then
-      print *, 'Verification: PASS'
-    else
-      print *, 'Verification: FAIL'
-      call MPI_Abort(MPI_COMM_WORLD,1,ierr)
-    end if
-
+  if (stat /= 0) then
+    print *, 'Allocation failed on rank ',rank
+    call MPI_Abort(MPI_COMM_WORLD,2,ierr)
   end if
 
-  deallocate(p,gx,gy,gz)
-  deallocate(send_left,send_right,recv_left,recv_right)
+  ! Physical: i=2:N+1, j=2:ny+1, k=2:N+1.
+  ! Global y cell is offset+j-1.
+
+  do k = 2,n+1
+    z = (real(k,real64)-1.5_real64)*h
+    do j = 2,ny+1
+      y = (real(offset+j,real64)-1.5_real64)*h
+      do i = 2,n+1
+        x = (real(i,real64)-1.5_real64)*h
+        p(i,j,k) = sin(twopi*x)*cos(twopi*y)*sin(twopi*z)
+      end do
+    end do
+  end do
+
+  call MPI_Barrier(MPI_COMM_WORLD,ierr)
+  t1 = MPI_Wtime()
+
+  ! Pack physical y-boundary planes.
+  do k = 2,n+1
+    do i = 2,n+1
+      sendlo(i-1,k-1) = p(i,2,k)
+      sendhi(i-1,k-1) = p(i,ny+1,k)
+    end do
+  end do
+
+  ! Periodic y-halo exchange.
+  call MPI_Sendrecv( &
+    sendhi,n*n,MPI_DOUBLE_PRECISION,next,10, &
+    recvlo,n*n,MPI_DOUBLE_PRECISION,prev,10, &
+    MPI_COMM_WORLD,status,ierr)
+
+  call MPI_Sendrecv( &
+    sendlo,n*n,MPI_DOUBLE_PRECISION,prev,11, &
+    recvhi,n*n,MPI_DOUBLE_PRECISION,next,11, &
+    MPI_COMM_WORLD,status,ierr)
+
+  do k = 2,n+1
+    do i = 2,n+1
+      p(i,1,k) = recvlo(i-1,k-1)
+      p(i,ny+2,k) = recvhi(i-1,k-1)
+    end do
+  end do
+
+  ! Local periodic x ghosts.
+  do k = 2,n+1
+    do j = 2,ny+1
+      p(1,j,k) = p(n+1,j,k)
+      p(n+2,j,k) = p(2,j,k)
+    end do
+  end do
+
+  ! Local periodic z ghosts.
+  do j = 2,ny+1
+    do i = 2,n+1
+      p(i,j,1) = p(i,j,n+1)
+      p(i,j,n+2) = p(i,j,2)
+    end do
+  end do
+
+  t2 = MPI_Wtime()
+
+  ! Central differences.
+  do k = 2,n+1
+    do j = 2,ny+1
+      do i = 2,n+1
+
+        gx(i-1,j-1,k-1) = &
+          (p(i+1,j,k)-p(i-1,j,k))/(2.0_real64*h)
+
+        gy(i-1,j-1,k-1) = &
+          (p(i,j+1,k)-p(i,j-1,k))/(2.0_real64*h)
+
+        gz(i-1,j-1,k-1) = &
+          (p(i,j,k+1)-p(i,j,k-1))/(2.0_real64*h)
+
+      end do
+    end do
+  end do
+
+  t3 = MPI_Wtime()
+
+  linf = 0.0_real64
+  l1 = 0.0_real64
+  l2 = 0.0_real64
+  exact2 = 0.0_real64
+
+  do k = 1,n
+    z = (real(k,real64)-0.5_real64)*h
+    do j = 1,ny
+      y = (real(offset+j,real64)-0.5_real64)*h
+      do i = 1,n
+
+        x = (real(i,real64)-0.5_real64)*h
+
+        ex = twopi*cos(twopi*x)*cos(twopi*y)*sin(twopi*z)
+        ey = -twopi*sin(twopi*x)*sin(twopi*y)*sin(twopi*z)
+        ez = twopi*sin(twopi*x)*cos(twopi*y)*cos(twopi*z)
+
+        linf = max(linf,sqrt( &
+          (gx(i,j,k)-ex)**2 + &
+          (gy(i,j,k)-ey)**2 + &
+          (gz(i,j,k)-ez)**2))
+
+        l1 = l1 + sqrt( &
+          (gx(i,j,k)-ex)**2 + &
+          (gy(i,j,k)-ey)**2 + &
+          (gz(i,j,k)-ez)**2)
+
+        l2 = l2 + &
+          (gx(i,j,k)-ex)**2 + &
+          (gy(i,j,k)-ey)**2 + &
+          (gz(i,j,k)-ez)**2
+
+        exact2 = exact2 + ex**2 + ey**2 + ez**2
+
+      end do
+    end do
+  end do
+
+  ! MPI global error norms.
+  call MPI_Allreduce(linf,global_linf,1, &
+    MPI_DOUBLE_PRECISION,MPI_MAX,MPI_COMM_WORLD,ierr)
+
+  call MPI_Allreduce(l1,global_l1,1, &
+    MPI_DOUBLE_PRECISION,MPI_SUM,MPI_COMM_WORLD,ierr)
+
+  call MPI_Allreduce(l2,global_l2,1, &
+    MPI_DOUBLE_PRECISION,MPI_SUM,MPI_COMM_WORLD,ierr)
+
+  call MPI_Allreduce(exact2,global_exact2,1, &
+    MPI_DOUBLE_PRECISION,MPI_SUM,MPI_COMM_WORLD,ierr)
+
+  relative_l2 = sqrt(global_l2/global_exact2)
+  expected = abs(1.0_real64-sin(twopi*h)/(twopi*h))
+
+  global_l1 = global_l1*h**3
+  global_l2 = sqrt(global_l2*h**3)
+
+  times(1) = t3-t2
+  times(2) = t3-t1
+  t4 = MPI_Wtime()
+  times(3) = t4-t0
+  times(4) = t1-t0
+  times(5) = t4-t3
+
+  call MPI_Reduce(times,max_times,5, &
+    MPI_DOUBLE_PRECISION,MPI_MAX,0,MPI_COMM_WORLD,ierr)
+
+  if (rank == 0) then
+    print '(a)', '=== Cell-centered 3D gradient: MPI CPU ==='
+    print '(a)', 'Decomposition = Y'
+    print '(a,i0)', 'N = ',n
+    print '(a,i0)', 'MPI_ranks = ',nranks
+    print '(a,es24.16)', 'dx = ',h
+    print '(a,es24.16)', 'L_inf = ',global_linf
+    print '(a,es24.16)', 'L1 = ',global_l1
+    print '(a,es24.16)', 'L2 = ',global_l2
+    print '(a,es24.16)', 'Relative_L2 = ',relative_l2
+    print '(a,es24.16)', 'Expected_Relative_L2 = ',expected
+    print '(a,es16.8)', 'FDM_seconds = ',max_times(1)
+    print '(a,es16.8)', 'Numerical_seconds = ',max_times(2)
+    print '(a,es16.8)', 'Application_seconds = ',max_times(3)
+    print '(a,es16.8)', 'Initialization_seconds = ',max_times(4)
+    print '(a,es16.8)', 'Norm_seconds = ',max_times(5)
+  end if
+
+  if (abs(relative_l2-expected) < 1.0e-10_real64) then
+    if (rank == 0) print '(a)', 'Verification: PASS'
+  else
+    if (rank == 0) print '(a)', 'Verification: FAIL'
+    call MPI_Abort(MPI_COMM_WORLD,3,ierr)
+  end if
+
+  deallocate(p,gx,gy,gz,sendlo,sendhi,recvlo,recvhi)
 
   call MPI_Finalize(ierr)
 
-end program pressure_gradient_mpi
+end program gradient_CPU_MPI

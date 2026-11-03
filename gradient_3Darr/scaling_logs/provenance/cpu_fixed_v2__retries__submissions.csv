@@ -1,0 +1,6 @@
+name,old_job_id,new_job_id,nodes,ranks,threads
+mpi_nodes2,42732317,42744546,2,64,1
+mpi_nodes8,42732325,42744547,8,256,1
+omp_t1_nodes8,42732326,42744548,8,256,1
+omp_t4_nodes4,42732324,42744549,4,32,4
+omp_t4_nodes8,42732328,42744550,8,64,4

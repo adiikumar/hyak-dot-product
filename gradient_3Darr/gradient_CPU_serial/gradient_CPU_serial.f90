@@ -1,102 +1,179 @@
-program pressure_gradient_serial
+program gradient_CPU_serial
+  use iso_fortran_env, only: real64, int64
   implicit none
 
-  integer, parameter :: n = 64
-  integer :: i, j, k, im, ip, jm, jp, km, kp
-  real(8) :: pi, h, x, y, z
-  real(8) :: exact_x, exact_y, exact_z
-  real(8) :: error_sum, reference_sum, relative_error, expected_error
-  real(8) :: p(n,n,n), gx(n,n,n), gy(n,n,n), gz(n,n,n)
+  integer :: n, ios, i, j, k, stat
+  integer(int64) :: clock_start, clock_end, clock_rate
+  character(len=64) :: arg
 
-  pi = acos(-1.0d0)
-  h = 1.0d0/dble(n)
+  real(real64), allocatable :: p(:,:,:)
+  real(real64), allocatable :: gx(:,:,:), gy(:,:,:), gz(:,:,:)
 
-  ! STEP 1: Initialize pressure from the analytical expression
+  real(real64) :: h, twopi, x, y, z
+  real(real64) :: ex, ey, ez
+  real(real64) :: linf, l1, l2, exact2
+  real(real64) :: relative_l2, expected
+  real(real64) :: t0, t1, t2, t3
+  real(real64) :: fdm_seconds, numerical_seconds, application_seconds
 
-  do k = 1, n
-    z = dble(k-1)*h
+  n = 256
 
-    do j = 1, n
-      y = dble(j-1)*h
+  if (command_argument_count() >= 1) then
+    call get_command_argument(1, arg)
+    read(arg, *, iostat=ios) n
+    if (ios /= 0) stop 1
+  end if
 
-      do i = 1, n
-        x = dble(i-1)*h
+  if (n < 4) stop 1
 
-        p(i,j,k) = sin(2.0d0*pi*x)*cos(2.0d0*pi*y)*sin(2.0d0*pi*z)
+  h = 1.0_real64 / real(n, real64)
+  twopi = 2.0_real64 * acos(-1.0_real64)
+
+  call system_clock(count_rate=clock_rate)
+
+  call system_clock(clock_start)
+  t0 = real(clock_start, real64) / real(clock_rate, real64)
+
+  allocate(p(n+2,n+2,n+2), &
+           gx(n,n,n), gy(n,n,n), gz(n,n,n), stat=stat)
+
+  if (stat /= 0) stop 'Allocation failed'
+
+  ! Physical cells: 2:N+1
+  ! Periodic ghosts: 1 and N+2
+
+  do k = 2,n+1
+    z = (real(k,real64)-1.5_real64)*h
+    do j = 2,n+1
+      y = (real(j,real64)-1.5_real64)*h
+      do i = 2,n+1
+        x = (real(i,real64)-1.5_real64)*h
+        p(i,j,k) = sin(twopi*x)*cos(twopi*y)*sin(twopi*z)
+      end do
+    end do
+  end do
+
+  call system_clock(clock_end)
+  t1 = real(clock_end,real64)/real(clock_rate,real64)
+
+  ! Periodic x ghosts.
+  do k = 2,n+1
+    do j = 2,n+1
+      p(1,j,k) = p(n+1,j,k)
+      p(n+2,j,k) = p(2,j,k)
+    end do
+  end do
+
+  ! Periodic y ghosts.
+  do k = 2,n+1
+    do i = 2,n+1
+      p(i,1,k) = p(i,n+1,k)
+      p(i,n+2,k) = p(i,2,k)
+    end do
+  end do
+
+  ! Periodic z ghosts.
+  do j = 2,n+1
+    do i = 2,n+1
+      p(i,j,1) = p(i,j,n+1)
+      p(i,j,n+2) = p(i,j,2)
+    end do
+  end do
+
+  call system_clock(clock_end)
+  t2 = real(clock_end,real64)/real(clock_rate,real64)
+
+  ! Second-order central difference.
+  do k = 2,n+1
+    do j = 2,n+1
+      do i = 2,n+1
+
+        gx(i-1,j-1,k-1) = &
+          (p(i+1,j,k)-p(i-1,j,k))/(2.0_real64*h)
+
+        gy(i-1,j-1,k-1) = &
+          (p(i,j+1,k)-p(i,j-1,k))/(2.0_real64*h)
+
+        gz(i-1,j-1,k-1) = &
+          (p(i,j,k+1)-p(i,j,k-1))/(2.0_real64*h)
 
       end do
     end do
   end do
 
-  ! STEP 2: Compute the gradient numerically using central differences
-  
-  do k = 1, n
-    km = k-1
-    kp = k+1
-    if (k == 1) km = n
-    if (k == n) kp = 1
+  call system_clock(clock_end)
+  t3 = real(clock_end,real64)/real(clock_rate,real64)
 
-    do j = 1, n
-      jm = j-1
-      jp = j+1
-      if (j == 1) jm = n
-      if (j == n) jp = 1
+  fdm_seconds = t3-t2
+  numerical_seconds = t3-t1
 
-      do i = 1, n
-        im = i-1
-        ip = i+1
-        if (i == 1) im = n
-        if (i == n) ip = 1
+  linf = 0.0_real64
+  l1 = 0.0_real64
+  l2 = 0.0_real64
+  exact2 = 0.0_real64
 
-        gx(i,j,k) = (p(ip,j,k)-p(im,j,k))/(2.0d0*h)
-        gy(i,j,k) = (p(i,jp,k)-p(i,jm,k))/(2.0d0*h)
-        gz(i,j,k) = (p(i,j,kp)-p(i,j,km))/(2.0d0*h)
+  do k = 1,n
+    z = (real(k,real64)-0.5_real64)*h
+    do j = 1,n
+      y = (real(j,real64)-0.5_real64)*h
+      do i = 1,n
 
-      end do
-    end do
-  end do
+        x = (real(i,real64)-0.5_real64)*h
 
-  ! STEP 3: Compare the numerical gradient to the analytical derivative
+        ex = twopi*cos(twopi*x)*cos(twopi*y)*sin(twopi*z)
+        ey = -twopi*sin(twopi*x)*sin(twopi*y)*sin(twopi*z)
+        ez = twopi*sin(twopi*x)*cos(twopi*y)*cos(twopi*z)
 
-  error_sum = 0.0d0
-  reference_sum = 0.0d0
+        linf = max(linf, sqrt( &
+          (gx(i,j,k)-ex)**2 + &
+          (gy(i,j,k)-ey)**2 + &
+          (gz(i,j,k)-ez)**2))
 
-  do k = 1, n
-    z = dble(k-1)*h
+        l1 = l1 + sqrt( &
+          (gx(i,j,k)-ex)**2 + &
+          (gy(i,j,k)-ey)**2 + &
+          (gz(i,j,k)-ez)**2)
 
-    do j = 1, n
-      y = dble(j-1)*h
+        l2 = l2 + &
+          (gx(i,j,k)-ex)**2 + &
+          (gy(i,j,k)-ey)**2 + &
+          (gz(i,j,k)-ez)**2
 
-      do i = 1, n
-        x = dble(i-1)*h
-
-        exact_x =  2.0d0*pi*cos(2.0d0*pi*x)*cos(2.0d0*pi*y)*sin(2.0d0*pi*z)
-        exact_y = -2.0d0*pi*sin(2.0d0*pi*x)*sin(2.0d0*pi*y)*sin(2.0d0*pi*z)
-        exact_z =  2.0d0*pi*sin(2.0d0*pi*x)*cos(2.0d0*pi*y)*cos(2.0d0*pi*z)
-
-        error_sum = error_sum + (gx(i,j,k)-exact_x)**2 &
-                              + (gy(i,j,k)-exact_y)**2 &
-                              + (gz(i,j,k)-exact_z)**2
-
-        reference_sum = reference_sum + exact_x**2 + exact_y**2 + exact_z**2
+        exact2 = exact2 + ex**2 + ey**2 + ez**2
 
       end do
     end do
   end do
 
-  relative_error = sqrt(error_sum/reference_sum)
+  relative_l2 = sqrt(l2/exact2)
+  expected = abs(1.0_real64-sin(twopi*h)/(twopi*h))
 
-  expected_error = abs(1.0d0 - sin(2.0d0*pi*h)/(2.0d0*pi*h))
+  l1 = l1*h**3
+  l2 = sqrt(l2*h**3)
 
-  print '(a,i0)', 'Grid size N = ', n
-  print '(a,es14.6)', 'Relative L2 error = ', relative_error
-  print '(a,es14.6)', 'Expected L2 error = ', expected_error
+  call system_clock(clock_end)
+  application_seconds = &
+    real(clock_end,real64)/real(clock_rate,real64)-t0
 
-  if (abs(relative_error-expected_error) < 1.0d-10) then
+  print '(a)', '=== Cell-centered 3D gradient: SERIAL CPU ==='
+  print '(a,i0)', 'N = ',n
+  print '(a,es24.16)', 'dx = ',h
+  print '(a,es24.16)', 'L_inf = ',linf
+  print '(a,es24.16)', 'L1 = ',l1
+  print '(a,es24.16)', 'L2 = ',l2
+  print '(a,es24.16)', 'Relative_L2 = ',relative_l2
+  print '(a,es24.16)', 'Expected_Relative_L2 = ',expected
+  print '(a,es16.8)', 'FDM_seconds = ',fdm_seconds
+  print '(a,es16.8)', 'Numerical_seconds = ',numerical_seconds
+  print '(a,es16.8)', 'Application_seconds = ',application_seconds
+
+  if (abs(relative_l2-expected) < 1.0e-10_real64) then
     print '(a)', 'Verification: PASS'
   else
     print '(a)', 'Verification: FAIL'
-    error stop 1
+    stop 2
   end if
 
-end program pressure_gradient_serial
+  deallocate(p,gx,gy,gz)
+
+end program gradient_CPU_serial

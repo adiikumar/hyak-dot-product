@@ -1,26 +1,31 @@
 #!/bin/bash
-#SBATCH -J pressure_mpi
-#SBATCH -A ferrante
-#SBATCH -p compute-bigmem
-#SBATCH -N 1
-#SBATCH -n 2
-#SBATCH --ntasks-per-node=2
-#SBATCH -c 1
-#SBATCH -t 00:05:00
-#SBATCH -o pressure_mpi_%j.out
+#SBATCH --account=ferrante
+#SBATCH --partition=ckpt-all
+#SBATCH --time=00:05:00
 
-set -eo pipefail
+set -euo pipefail
 
+set +u
 module purge
 module load gcc/13.2.0
-module load ompi/4.1.6-2
+module load ligroup/openmpi/5.0.10
+set -u
 
 cd "$SLURM_SUBMIT_DIR"
 
-mpif90 -O2 -fcheck=bounds \
-  pressure_gradient_mpi.f90 \
-  -o pressure_gradient_mpi
+N="${1:-1024}"
 
-echo "nodes=$SLURM_JOB_NUM_NODES ranks=$SLURM_NTASKS N=64"
+BUILD_DIR="$SLURM_SUBMIT_DIR/.job_build/$SLURM_JOB_ID"
+mkdir -p "$BUILD_DIR"
 
-mpirun --bind-to none ./pressure_gradient_mpi
+EXE="$BUILD_DIR/gradient_CPU_MPI"
+trap 'rm -rf -- "$BUILD_DIR"' EXIT
+
+mpifort -O2 -J "$BUILD_DIR" \
+  gradient_CPU_MPI.f90 -o "$EXE"
+
+echo "N=$N nodes=$SLURM_JOB_NUM_NODES ranks=$SLURM_NTASKS threads=1"
+echo "Executable=$EXE"
+
+mpirun --bind-to none -np "$SLURM_NTASKS" \
+  "$EXE" "$N"
