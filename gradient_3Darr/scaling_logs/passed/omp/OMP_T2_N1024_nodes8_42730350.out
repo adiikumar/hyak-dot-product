@@ -1,0 +1,40 @@
+N=1024 nodes=8 ranks=128 threads=2
+=== Cell-centered 3D gradient: MPI + OpenMP CPU ===
+Decomposition = Y
+N = 1024
+MPI_ranks = 128
+OMP_threads_per_rank = 2
+dx =   9.7656250000000000E-04
+L_inf =   3.9425888786521901E-05
+L1 =   2.2569321693758146E-05
+L2 =   2.4143668402490195E-05
+Relative_L2 =   6.2749136744889067E-06
+Expected_Relative_L2 =   6.2749136745532397E-06
+FDM_seconds =   7.13928975E-01
+Numerical_seconds =   1.73816700E+00
+Application_seconds =   9.21388343E+00
+Verification: PASS
+[1793612834.695415] [n3485:1613319:0]           mpool.c:55   UCX  WARN  object 0x1d45c80 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.695437] [n3485:1613319:0]           mpool.c:55   UCX  WARN  object 0x1d45f00 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.695441] [n3485:1613319:0]           mpool.c:55   UCX  WARN  object 0x1d46040 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.724896] [n3474:2134746:0]           mpool.c:55   UCX  WARN  object 0xf94d80 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.724923] [n3474:2134746:0]           mpool.c:55   UCX  WARN  object 0xf94ec0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.724927] [n3474:2134746:0]           mpool.c:55   UCX  WARN  object 0xf95000 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.727556] [n3484:290312:0]           mpool.c:55   UCX  WARN  object 0x2a7b4c0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.727577] [n3484:290312:0]           mpool.c:55   UCX  WARN  object 0x2a7b600 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.727582] [n3484:290312:0]           mpool.c:55   UCX  WARN  object 0x2a7b880 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.732529] [n3475:3188899:0]           mpool.c:55   UCX  WARN  object 0x28f8c80 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.732552] [n3475:3188899:0]           mpool.c:55   UCX  WARN  object 0x28f8dc0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.732556] [n3475:3188899:0]           mpool.c:55   UCX  WARN  object 0x28f8f00 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.755794] [n3482:1643027:0]           mpool.c:55   UCX  WARN  object 0x1741c80 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.755815] [n3482:1643027:0]           mpool.c:55   UCX  WARN  object 0x1741dc0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.755819] [n3482:1643027:0]           mpool.c:55   UCX  WARN  object 0x1742040 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.760363] [n3479:2476462:0]           mpool.c:55   UCX  WARN  object 0x1d34dc0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.760386] [n3479:2476462:0]           mpool.c:55   UCX  WARN  object 0x1d34f00 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.760391] [n3479:2476462:0]           mpool.c:55   UCX  WARN  object 0x1d35040 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.773698] [n3483:1371624:0]           mpool.c:55   UCX  WARN  object 0x2c44340 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.773731] [n3483:1371624:0]           mpool.c:55   UCX  WARN  object 0x2c44480 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.773736] [n3483:1371624:0]           mpool.c:55   UCX  WARN  object 0x2c445c0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.782464] [n3486:1163685:0]           mpool.c:55   UCX  WARN  object 0x181ce00 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.782485] [n3486:1163685:0]           mpool.c:55   UCX  WARN  object 0x181d080 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793612834.782490] [n3486:1163685:0]           mpool.c:55   UCX  WARN  object 0x181d1c0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests

@@ -1,0 +1,15 @@
+N=512 nodes=1 ranks=32 threads=1
+=== Cell-centered 3D gradient: MPI CPU ===
+Decomposition = Y
+N = 512
+MPI_ranks = 32
+dx =   1.9531250000000000E-03
+L_inf =   1.5769598514542304E-04
+L1 =   9.0276780256764351E-05
+L2 =   9.6574128212983674E-05
+Relative_L2 =   2.5099512949863352E-05
+Expected_Relative_L2 =   2.5099512949933178E-05
+FDM_seconds =   1.03549642E-01
+Numerical_seconds =   1.16102084E-01
+Application_seconds =   3.79775408E-01
+Verification: PASS

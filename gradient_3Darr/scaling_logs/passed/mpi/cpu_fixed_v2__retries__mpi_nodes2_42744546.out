@@ -1,0 +1,88 @@
+N=1024
+Nodes=2
+MPI_ranks=64
+Threads_per_rank=1
+CPU_cores_per_node=32
+UCX_TLS=rc,sm,self
+MPI_mapping=ppr:32:node:PE=1
+Node=n3498
+[n3498:1866990] Rank 1 bound to package[0][core:L33]
+[n3498:1866990] Rank 0 bound to package[0][core:L32]
+[n3498:1866990] Rank 2 bound to package[0][core:L34]
+[n3498:1866990] Rank 3 bound to package[0][core:L35]
+[n3498:1866990] Rank 4 bound to package[0][core:L36]
+[n3498:1866990] Rank 5 bound to package[0][core:L37]
+[n3498:1866990] Rank 7 bound to package[0][core:L39]
+[n3498:1866990] Rank 6 bound to package[0][core:L38]
+[n3498:1866990] Rank 9 bound to package[0][core:L41]
+[n3498:1866990] Rank 8 bound to package[0][core:L40]
+[n3498:1866990] Rank 11 bound to package[0][core:L80]
+[n3498:1866990] Rank 10 bound to package[0][core:L79]
+[n3498:1866990] Rank 15 bound to package[0][core:L84]
+[n3498:1866990] Rank 12 bound to package[0][core:L81]
+[n3498:1866990] Rank 14 bound to package[0][core:L83]
+[n3498:1866990] Rank 19 bound to package[1][core:L107]
+[n3498:1866990] Rank 13 bound to package[0][core:L82]
+[n3498:1866990] Rank 18 bound to package[1][core:L106]
+[n3498:1866990] Rank 16 bound to package[0][core:L94]
+[n3498:1866990] Rank 17 bound to package[0][core:L95]
+[n3498:1866990] Rank 22 bound to package[1][core:L140]
+[n3498:1866990] Rank 20 bound to package[1][core:L138]
+[n3498:1866990] Rank 26 bound to package[1][core:L144]
+[n3498:1866990] Rank 24 bound to package[1][core:L142]
+[n3498:1866990] Rank 21 bound to package[1][core:L139]
+[n3498:1866990] Rank 23 bound to package[1][core:L141]
+[n3498:1866990] Rank 30 bound to package[1][core:L148]
+[n3498:1866990] Rank 28 bound to package[1][core:L146]
+[n3498:1866990] Rank 25 bound to package[1][core:L143]
+[n3498:1866990] Rank 27 bound to package[1][core:L145]
+[n3498:1866990] Rank 31 bound to package[1][core:L149]
+[n3498:1866990] Rank 29 bound to package[1][core:L147]
+[n3502:3275778] Rank 32 bound to package[0][core:L0]
+[n3502:3275778] Rank 33 bound to package[0][core:L1]
+[n3502:3275778] Rank 34 bound to package[0][core:L2]
+[n3502:3275778] Rank 36 bound to package[0][core:L4]
+[n3502:3275778] Rank 35 bound to package[0][core:L3]
+[n3502:3275778] Rank 38 bound to package[0][core:L6]
+[n3502:3275778] Rank 39 bound to package[0][core:L7]
+[n3502:3275778] Rank 37 bound to package[0][core:L5]
+[n3502:3275778] Rank 40 bound to package[0][core:L8]
+[n3502:3275778] Rank 41 bound to package[0][core:L9]
+[n3502:3275778] Rank 43 bound to package[0][core:L11]
+[n3502:3275778] Rank 42 bound to package[0][core:L10]
+[n3502:3275778] Rank 44 bound to package[0][core:L12]
+[n3502:3275778] Rank 46 bound to package[0][core:L14]
+[n3502:3275778] Rank 45 bound to package[0][core:L13]
+[n3502:3275778] Rank 47 bound to package[0][core:L15]
+[n3502:3275778] Rank 48 bound to package[0][core:L26]
+[n3502:3275778] Rank 49 bound to package[0][core:L27]
+[n3502:3275778] Rank 50 bound to package[0][core:L28]
+[n3502:3275778] Rank 51 bound to package[0][core:L29]
+[n3502:3275778] Rank 52 bound to package[0][core:L30]
+[n3502:3275778] Rank 54 bound to package[0][core:L32]
+[n3502:3275778] Rank 53 bound to package[0][core:L31]
+[n3502:3275778] Rank 55 bound to package[0][core:L33]
+[n3502:3275778] Rank 56 bound to package[0][core:L34]
+[n3502:3275778] Rank 58 bound to package[0][core:L36]
+[n3502:3275778] Rank 57 bound to package[0][core:L35]
+[n3502:3275778] Rank 59 bound to package[0][core:L37]
+[n3502:3275778] Rank 60 bound to package[0][core:L38]
+[n3502:3275778] Rank 61 bound to package[0][core:L39]
+[n3502:3275778] Rank 62 bound to package[0][core:L40]
+[n3502:3275778] Rank 63 bound to package[0][core:L41]
+=== Cell-centered 3D gradient: MPI CPU ===
+Decomposition = Y
+N = 1024
+MPI_ranks = 64
+dx =   9.7656250000000000E-04
+L_inf =   3.9425888786521901E-05
+L1 =   2.2569321693758376E-05
+L2 =   2.4143668402492590E-05
+Relative_L2 =   6.2749136744910624E-06
+Expected_Relative_L2 =   6.2749136745532397E-06
+FDM_seconds =   4.66701236E-01
+Numerical_seconds =   5.90599779E-01
+Application_seconds =   1.53250635E+00
+Initialization_seconds =   3.10064838E-01
+Norm_seconds =   9.35293298E-01
+Verification: PASS

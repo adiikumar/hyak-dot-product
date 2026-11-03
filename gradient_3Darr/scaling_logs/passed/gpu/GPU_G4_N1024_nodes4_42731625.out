@@ -1,0 +1,57 @@
+N=1024
+Nodes=4
+MPI ranks=4
+GPUs per rank=4
+Compiler cache=/mmfs1/gscratch/ferrante/adityk7/test/gradient_3Darr/gradient_CPU_MPI_OMP_GPU/.nvhpc_job_cache/42731625
+Compiling...
+enter_device:
+    286, Generating target enter data map(create: p(:,:,:),rhi(:,:),rlo(:,:),slo(:,:),shi(:,:),gy(:,:,:),gx(:,:,:),gz(:,:,:))
+exit_device:
+    297, Generating target exit data map(delete: p(:,:,:),rhi(:,:),rlo(:,:),slo(:,:),shi(:,:),gy(:,:,:),gx(:,:,:),gz(:,:,:)) finalize
+initialize_pressure:
+    307, !$omp target teams distribute parallel do
+        307, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_initialize_pressure_F1L307_2" GPU kernel
+pack_faces:
+    328, !$omp target teams distribute parallel do
+        328, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_pack_faces_F1L328_6" GPU kernel
+fill_ghosts:
+    349, !$omp target teams distribute parallel do
+        349, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_fill_ghosts_F1L349_10" GPU kernel
+    359, !$omp target teams distribute parallel do
+        359, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_fill_ghosts_F1L359_12" GPU kernel
+    369, !$omp target teams distribute parallel do
+        369, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_fill_ghosts_F1L369_14" GPU kernel
+compute_gradient:
+    385, !$omp target teams distribute parallel do
+        385, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_compute_gradient_F1L385_22" GPU kernel
+calculate_norms:
+    417, !$omp target teams distribute parallel do
+        417, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_calculate_norms_F1L417_26" GPU kernel
+GPUs allocated:
+0, GPU-e77a6808-599f-cb53-6ef0-f182865702fa, NVIDIA A40
+1, GPU-4eda6e01-4d62-4fda-5825-37b8bdccb880, NVIDIA A40
+2, GPU-64c97e6d-3f3f-3763-5865-2a23885bd569, NVIDIA A40
+3, GPU-6b7a13e5-d3a0-db95-3f6b-bae4222ad864, NVIDIA A40
+Starting computation...
+=== 3D gradient: MPI + OpenMP GPU ===
+Decomposition = Y
+N = 1024
+MPI_ranks = 4
+GPUs_per_rank = 4
+GPUs = 16
+dx =   9.7656250000000000E-04
+L_inf =   3.9425888786521895E-05
+L1 =   2.2569321693757224E-05
+L2 =   2.4143668402488819E-05
+Relative_L2 =   6.2749136744890142E-06
+Expected_Relative_L2 =   6.2749136745532397E-06
+Initialization_seconds =   9.17239180E-02
+Pack_seconds =   4.25332760E-02
+Communication_seconds =   4.32848840E-02
+Unpack_seconds =   1.46520400E-02
+FDM_seconds =   2.88024870E-02
+Norm_seconds =   1.51038192E-01
+Numerical_seconds =   1.27863289E-01
+Application_seconds =   1.23827964E+00
+Verification: PASS
+Completed.

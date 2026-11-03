@@ -1,0 +1,100 @@
+N=1024 nodes=2 ranks=16 ranks_per_node=8 threads_per_rank=4
+Node=n3449 CPU model= AMD EPYC 9654 96-Core Processor
+MPI_mapping=ppr:8:node:PE=4
+[n3449:3706663] Rank 0 bound to package[0][core:L82-85]
+[n3449:3706663] Rank 1 bound to package[0][core:L86-87,90-91]
+[n3449:3706663] Rank 2 bound to package[0][core:L92-95]
+[n3449:3706663] Rank 3 bound to package[1][core:L96-99]
+[n3449:3706663] Rank 4 bound to package[1][core:L100-103]
+[n3449:3706663] Rank 5 bound to package[1][core:L104-107]
+[n3449:3706663] Rank 6 bound to package[1][core:L108-111]
+[n3449:3706663] Rank 7 bound to package[1][core:L112-115]
+[n3460:925309] Rank 8 bound to package[0][core:L46-49]
+[n3460:925309] Rank 15 bound to package[0][core:L78-81]
+[n3460:925309] Rank 14 bound to package[0][core:L74-77]
+[n3460:925309] Rank 9 bound to package[0][core:L50-53]
+[n3460:925309] Rank 11 bound to package[0][core:L58-59,64-65]
+[n3460:925309] Rank 12 bound to package[0][core:L66-69]
+[n3460:925309] Rank 10 bound to package[0][core:L54-57]
+[n3460:925309] Rank 13 bound to package[0][core:L70-73]
+level 1 thread 0x14bf4b6aad00 affinity 92
+level 1 thread 0x14be9872d700 affinity 93
+level 1 thread 0x14be9852c700 affinity 94
+level 1 thread 0x14be9832b700 affinity 95
+level 1 thread 0x147db63cbd00 affinity 82
+level 1 thread 0x147d017f0700 affinity 83
+level 1 thread 0x147d015ef700 affinity 84
+level 1 thread 0x147d013ee700 affinity 85
+level 1 thread 0x146a145d2d00 affinity 86
+level 1 thread 0x146961e89700 affinity 87
+level 1 thread 0x146961c88700 affinity 90
+level 1 thread 0x146961a87700 affinity 91
+level 1 thread 0x15300935ad00 affinity 112
+level 1 thread 0x152f53afd700 affinity 113
+level 1 thread 0x152f538fc700 affinity 114
+level 1 thread 0x152f536fb700 affinity 115
+level 1 thread 0x14ab4413fd00 affinity 108
+level 1 thread 0x14aa8f1cb700 affinity 109
+level 1 thread 0x14aa8efca700 affinity 110
+level 1 thread 0x14aa8edc9700 affinity 111
+level 1 thread 0x1533f8686d00 affinity 104
+level 1 thread 0x153343728700 affinity 105
+level 1 thread 0x153343527700 affinity 106
+level 1 thread 0x153343326700 affinity 107
+level 1 thread 0x150193941d00 affinity 100
+level 1 thread 0x1500df206700 affinity 101
+level 1 thread 0x1500df005700 affinity 102
+level 1 thread 0x1500dee04700 affinity 103
+level 1 thread 0x14557fb1fd00 affinity 96
+level 1 thread 0x1454c9fd9700 affinity 97
+level 1 thread 0x1454c9dd8700 affinity 98
+level 1 thread 0x1454c9bd7700 affinity 99
+level 1 thread 0x1519ded59d00 affinity 66
+level 1 thread 0x15192514c700 affinity 67
+level 1 thread 0x151924f4b700 affinity 68
+level 1 thread 0x151924d4a700 affinity 69
+level 1 thread 0x14ae22e63d00 affinity 70
+level 1 thread 0x14ad6a69b700 affinity 71
+level 1 thread 0x14ad6a49a700 affinity 72
+level 1 thread 0x14ad6a299700 affinity 73
+level 1 thread 0x1552eea6fd00 affinity 50
+level 1 thread 0x155236f23700 affinity 51
+level 1 thread 0x155236d22700 affinity 52
+level 1 thread 0x155236b21700 affinity 53
+level 1 thread 0x145b4b4e5d00 affinity 58
+level 1 thread 0x145a910d2700 affinity 59
+level 1 thread 0x145a90ed1700 affinity 64
+level 1 thread 0x145a90cd0700 affinity 65
+level 1 thread 0x14b9d258ed00 affinity 74
+level 1 thread 0x14b9199ce700 affinity 75
+level 1 thread 0x14b9197cd700 affinity 76
+level 1 thread 0x14b9195cc700 affinity 77
+level 1 thread 0x148148815d00 affinity 78
+level 1 thread 0x14808f873700 affinity 79
+level 1 thread 0x14808f672700 affinity 80
+level 1 thread 0x14808f471700 affinity 81
+level 1 thread 0x146eace09d00 affinity 46
+level 1 thread 0x146df4e9c700 affinity 47
+level 1 thread 0x146df4c9b700 affinity 48
+level 1 thread 0x146df4a9a700 affinity 49
+level 1 thread 0x14845ab99d00 affinity 54
+level 1 thread 0x1483a1bfc700 affinity 55
+level 1 thread 0x1483a19fb700 affinity 56
+level 1 thread 0x1483a17fa700 affinity 57
+=== Cell-centered 3D gradient: MPI + OpenMP CPU ===
+Decomposition = Y
+N = 1024
+MPI_ranks = 16
+OMP_threads_per_rank = 4
+dx =   9.7656250000000000E-04
+L_inf =   3.9425888786521901E-05
+L1 =   2.2569321693757082E-05
+L2 =   2.4143668402491679E-05
+Relative_L2 =   6.2749136744913910E-06
+Expected_Relative_L2 =   6.2749136745532397E-06
+FDM_seconds =   2.28824941E-01
+Numerical_seconds =   2.84216286E-01
+Application_seconds =   7.98206068E-01
+Initialization_seconds =   1.72978098E-01
+Norm_seconds =   5.05587438E-01
+Verification: PASS

@@ -1,0 +1,55 @@
+N=1024
+Nodes=1
+MPI_ranks=32
+Threads_per_rank=1
+CPU_workers=32
+MPI_mapping=ppr:32:node:PE=1
+[n3489:2120531] Rank 0 bound to package[0][core:L60]
+[n3489:2120531] Rank 1 bound to package[0][core:L61]
+[n3489:2120531] Rank 2 bound to package[0][core:L62]
+[n3489:2120531] Rank 3 bound to package[0][core:L63]
+[n3489:2120531] Rank 5 bound to package[0][core:L65]
+[n3489:2120531] Rank 7 bound to package[0][core:L67]
+[n3489:2120531] Rank 4 bound to package[0][core:L64]
+[n3489:2120531] Rank 6 bound to package[0][core:L66]
+[n3489:2120531] Rank 9 bound to package[0][core:L69]
+[n3489:2120531] Rank 11 bound to package[0][core:L71]
+[n3489:2120531] Rank 8 bound to package[0][core:L68]
+[n3489:2120531] Rank 10 bound to package[0][core:L70]
+[n3489:2120531] Rank 13 bound to package[0][core:L73]
+[n3489:2120531] Rank 17 bound to package[0][core:L83]
+[n3489:2120531] Rank 14 bound to package[0][core:L74]
+[n3489:2120531] Rank 21 bound to package[0][core:L87]
+[n3489:2120531] Rank 15 bound to package[0][core:L75]
+[n3489:2120531] Rank 12 bound to package[0][core:L72]
+[n3489:2120531] Rank 18 bound to package[0][core:L84]
+[n3489:2120531] Rank 25 bound to package[0][core:L91]
+[n3489:2120531] Rank 19 bound to package[0][core:L85]
+[n3489:2120531] Rank 22 bound to package[0][core:L88]
+[n3489:2120531] Rank 29 bound to package[0][core:L95]
+[n3489:2120531] Rank 23 bound to package[0][core:L89]
+[n3489:2120531] Rank 26 bound to package[0][core:L92]
+[n3489:2120531] Rank 16 bound to package[0][core:L82]
+[n3489:2120531] Rank 27 bound to package[0][core:L93]
+[n3489:2120531] Rank 30 bound to package[1][core:L96]
+[n3489:2120531] Rank 20 bound to package[0][core:L86]
+[n3489:2120531] Rank 31 bound to package[1][core:L97]
+[n3489:2120531] Rank 24 bound to package[0][core:L90]
+[n3489:2120531] Rank 28 bound to package[0][core:L94]
+=== Cell-centered 3D gradient: MPI + OpenMP CPU ===
+Decomposition = Y
+N = 1024
+MPI_ranks = 32
+OMP_threads_per_rank = 1
+dx =   9.7656250000000000E-04
+L_inf =   3.9425888786521901E-05
+L1 =   2.2569321693757865E-05
+L2 =   2.4143668402485604E-05
+Relative_L2 =   6.2749136744911488E-06
+Expected_Relative_L2 =   6.2749136745532397E-06
+FDM_seconds =   4.19793592E-01
+Numerical_seconds =   4.49487017E-01
+Application_seconds =   1.48073433E+00
+Initialization_seconds =   3.45511695E-01
+Norm_seconds =   9.18654975E-01
+Verification: PASS

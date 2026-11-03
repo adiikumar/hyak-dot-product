@@ -1,0 +1,16 @@
+N=1024 nodes=2 ranks=16 threads=4
+=== Cell-centered 3D gradient: MPI + OpenMP CPU ===
+Decomposition = Y
+N = 1024
+MPI_ranks = 16
+OMP_threads_per_rank = 4
+dx =   9.7656250000000000E-04
+L_inf =   3.9425888786521901E-05
+L1 =   2.2569321693757075E-05
+L2 =   2.4143668402491679E-05
+Relative_L2 =   6.2749136744913910E-06
+Expected_Relative_L2 =   6.2749136745532397E-06
+FDM_seconds =   8.12821310E-01
+Numerical_seconds =   1.61422500E+00
+Application_seconds =   8.90480550E+00
+Verification: PASS

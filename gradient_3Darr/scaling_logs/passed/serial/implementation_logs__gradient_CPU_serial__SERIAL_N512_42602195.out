@@ -1,0 +1,13 @@
+N=512 nodes=1 ranks=1 threads=1
+=== Cell-centered 3D gradient: SERIAL CPU ===
+N = 512
+dx =   1.9531250000000000E-03
+L_inf =   1.5769598514542304E-04
+L1 =   9.0276780256545979E-05
+L2 =   9.6574128213112423E-05
+Relative_L2 =   2.5099512949856603E-05
+Expected_Relative_L2 =   2.5099512949933178E-05
+FDM_seconds =   9.98021503E-01
+Numerical_seconds =   1.00336612E+00
+Application_seconds =   5.82237518E+00
+Verification: PASS

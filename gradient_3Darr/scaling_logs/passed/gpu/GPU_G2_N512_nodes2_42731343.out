@@ -1,0 +1,55 @@
+N=512
+Nodes=2
+MPI ranks=2
+GPUs per rank=2
+Compiler cache=/mmfs1/gscratch/ferrante/adityk7/test/gradient_3Darr/gradient_CPU_MPI_OMP_GPU/.nvhpc_job_cache/42731343
+Compiling...
+enter_device:
+    286, Generating target enter data map(create: p(:,:,:),rhi(:,:),rlo(:,:),slo(:,:),shi(:,:),gy(:,:,:),gx(:,:,:),gz(:,:,:))
+exit_device:
+    297, Generating target exit data map(delete: p(:,:,:),rhi(:,:),rlo(:,:),slo(:,:),shi(:,:),gy(:,:,:),gx(:,:,:),gz(:,:,:)) finalize
+initialize_pressure:
+    307, !$omp target teams distribute parallel do
+        307, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_initialize_pressure_F1L307_2" GPU kernel
+pack_faces:
+    328, !$omp target teams distribute parallel do
+        328, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_pack_faces_F1L328_6" GPU kernel
+fill_ghosts:
+    349, !$omp target teams distribute parallel do
+        349, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_fill_ghosts_F1L349_10" GPU kernel
+    359, !$omp target teams distribute parallel do
+        359, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_fill_ghosts_F1L359_12" GPU kernel
+    369, !$omp target teams distribute parallel do
+        369, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_fill_ghosts_F1L369_14" GPU kernel
+compute_gradient:
+    385, !$omp target teams distribute parallel do
+        385, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_compute_gradient_F1L385_22" GPU kernel
+calculate_norms:
+    417, !$omp target teams distribute parallel do
+        417, Generating "nvkernel_gradient_cpu_mpi_omp_gpu_calculate_norms_F1L417_26" GPU kernel
+GPUs allocated:
+0, GPU-9102914b-1858-3b69-7d19-23f31944a404, NVIDIA A40
+1, GPU-b5a4927c-0c16-1100-1b14-65c3114d8104, NVIDIA A40
+Starting computation...
+=== 3D gradient: MPI + OpenMP GPU ===
+Decomposition = Y
+N = 512
+MPI_ranks = 2
+GPUs_per_rank = 2
+GPUs = 4
+dx =   1.9531250000000000E-03
+L_inf =   1.5769598514542304E-04
+L1 =   9.0276780256773201E-05
+L2 =   9.6574128213002106E-05
+Relative_L2 =   2.5099512949870657E-05
+Expected_Relative_L2 =   2.5099512949933178E-05
+Initialization_seconds =   2.31571810E-02
+Pack_seconds =   6.54327800E-03
+Communication_seconds =   5.58089400E-03
+Unpack_seconds =   2.47932700E-03
+FDM_seconds =   7.22725200E-03
+Norm_seconds =   3.79676260E-02
+Numerical_seconds =   2.14627650E-02
+Application_seconds =   4.14455336E-01
+Verification: PASS
+Completed.

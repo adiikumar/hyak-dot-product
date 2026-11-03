@@ -1,0 +1,63 @@
+N=1024
+Nodes=1
+MPI_ranks=8
+Threads_per_rank=4
+CPU_workers=32
+MPI_mapping=ppr:8:node:PE=4
+[n3499:2982313] Rank 0 bound to package[0][core:L30-33]
+[n3499:2982313] Rank 1 bound to package[0][core:L34-37]
+[n3499:2982313] Rank 2 bound to package[0][core:L38-41]
+[n3499:2982313] Rank 3 bound to package[0][core:L42-45]
+[n3499:2982313] Rank 4 bound to package[0][core:L46-49]
+[n3499:2982313] Rank 5 bound to package[0][core:L50-53]
+[n3499:2982313] Rank 6 bound to package[0][core:L54-57]
+[n3499:2982313] Rank 7 bound to package[0][core:L58-61]
+level 1 thread 0x14dbd8f5fd00 affinity 58
+level 1 thread 0x14daa6205700 affinity 59
+level 1 thread 0x14daa6004700 affinity 60
+level 1 thread 0x14daa5e03700 affinity 61
+level 1 thread 0x150e31722d00 affinity 34
+level 1 thread 0x150cfd53e700 affinity 35
+level 1 thread 0x150cfd33d700 affinity 36
+level 1 thread 0x150cfd13c700 affinity 37
+level 1 thread 0x153b918b5d00 affinity 38
+level 1 thread 0x153a5e318700 affinity 39
+level 1 thread 0x153a5e117700 affinity 40
+level 1 thread 0x153a5df16700 affinity 41
+level 1 thread 0x1512410b7d00 affinity 50
+level 1 thread 0x15110e328700 affinity 51
+level 1 thread 0x15110e127700 affinity 52
+level 1 thread 0x15110df26700 affinity 53
+level 1 thread 0x14701e3dcd00 affinity 42
+level 1 thread 0x146eeae6c700 affinity 43
+level 1 thread 0x146eeac6b700 affinity 44
+level 1 thread 0x146eeaa6a700 affinity 45
+level 1 thread 0x1520c1bddd00 affinity 46
+level 1 thread 0x151f8d901700 affinity 47
+level 1 thread 0x151f8d700700 affinity 48
+level 1 thread 0x151f8d4ff700 affinity 49
+level 1 thread 0x1510e8cd6d00 affinity 30
+level 1 thread 0x150fb52f4700 affinity 31
+level 1 thread 0x150fb50f3700 affinity 32
+level 1 thread 0x150fb4ef2700 affinity 33
+level 1 thread 0x1518e1458d00 affinity 54
+level 1 thread 0x1517ad901700 affinity 55
+level 1 thread 0x1517ad700700 affinity 56
+level 1 thread 0x1517ad4ff700 affinity 57
+=== Cell-centered 3D gradient: MPI + OpenMP CPU ===
+Decomposition = Y
+N = 1024
+MPI_ranks = 8
+OMP_threads_per_rank = 4
+dx =   9.7656250000000000E-04
+L_inf =   3.9425888786521901E-05
+L1 =   2.2569321693760999E-05
+L2 =   2.4143668402486485E-05
+Relative_L2 =   6.2749136744899866E-06
+Expected_Relative_L2 =   6.2749136745532397E-06
+FDM_seconds =   4.88345859E-01
+Numerical_seconds =   5.02687866E-01
+Application_seconds =   1.52681953E+00
+Initialization_seconds =   3.38906624E-01
+Norm_seconds =   8.21685099E-01
+Verification: PASS
