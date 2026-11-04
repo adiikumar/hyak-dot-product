@@ -3,7 +3,7 @@
 Reproducible post-processing for the 3D gradient benchmark.
 
 Reads:
-    scaling_logs/manifest.csv
+    scaling_logs/master.csv
     scaling_logs/passed/**/*.out
 
 Generates:
@@ -95,7 +95,7 @@ def as_float(value):
 
 
 def read_manifest():
-    path = ROOT / "manifest.csv"
+    path = ROOT / "master.csv"
 
     if not path.is_file():
         raise SystemExit(f"Missing manifest: {path}")

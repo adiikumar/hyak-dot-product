@@ -1,0 +1,20 @@
+set LFC=-lgfortran;
+set LDSO=/lib64/ld-linux-x86-64.so.2;
+set GCCDIR=/mmfs1/sw/gcc/13.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/13.2.0/;
+set G77DIR=/mmfs1/sw/gcc/13.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/13.2.0/;
+set OEM_INFO=64-bit target on x86-64 Linux $INFOTPVAL;
+set GNUATOMIC=-latomic;
+set GCCINC=/mmfs1/sw/gcc/13.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/13.2.0/include /mmfs1/sw/gcc/13.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/13.2.0/include-fixed /usr/local/include /mmfs1/sw/gcc/13.2.0/bin/../lib/gcc/../../include /usr/include;
+set GPPDIR=/mmfs1/sw/gcc/13.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/13.2.0/../../../../include/c++/13.2.0 /mmfs1/sw/gcc/13.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/13.2.0/../../../../include/c++/13.2.0/x86_64-pc-linux-gnu /mmfs1/sw/gcc/13.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/13.2.0/../../../../include/c++/13.2.0/backward /mmfs1/sw/gcc/13.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/13.2.0/include /mmfs1/sw/gcc/13.2.0/bin/../lib/gcc/x86_64-pc-linux-gnu/13.2.0/include-fixed /usr/local/include /mmfs1/sw/gcc/13.2.0/bin/../lib/gcc/../../include /usr/include;
+set NUMALIBNAME=-lnuma;
+set LOCALRC=YES;
+set EXTENSION=__extension__=;
+set LC=-lgcc -lc $if(-Bstatic,-lgcc_eh, -lgcc_s);
+set DEFCUDAVERSION=12.4;
+set DEFSTDPARCOMPUTECAP=86;
+# GLIBC version 2.28
+# GCC version 13.2.0
+set GCCVERSION=130200;
+set LIBNCURSES=YES;
+export PGI=$COMPBASE;
+# makelocalrc executed by adityk7 Wed Nov 4 14:57:02 PST 2026
