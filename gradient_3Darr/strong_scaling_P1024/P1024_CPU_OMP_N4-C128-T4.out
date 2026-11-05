@@ -1,0 +1,185 @@
+N=1024
+Nodes=4
+MPI_ranks=32
+Threads_per_rank=4
+CPU_cores_per_node=32
+UCX_TLS=rc,sm,self
+MPI_mapping=slot:PE=4
+Node=n3276
+[n3276:3566137] Rank 0 bound to package[0][core:L0-3]
+[n3276:3566137] Rank 1 bound to package[0][core:L4-7]
+[n3276:3566137] Rank 2 bound to package[0][core:L8-11]
+[n3276:3566137] Rank 3 bound to package[0][core:L12-15]
+[n3276:3566137] Rank 4 bound to package[0][core:L16-19]
+[n3276:3566137] Rank 5 bound to package[1][core:L20-23]
+[n3276:3566137] Rank 6 bound to package[1][core:L24-27]
+[n3276:3566137] Rank 7 bound to package[1][core:L28-31]
+[n3400:3903789] Rank 24 bound to package[0][core:L0-3]
+[n3400:3903789] Rank 25 bound to package[0][core:L4-7]
+[n3400:3903789] Rank 26 bound to package[0][core:L8-11]
+[n3279:1848386] Rank 16 bound to package[0][core:L0-3]
+[n3279:1848386] Rank 17 bound to package[0][core:L4-7]
+[n3279:1848386] Rank 19 bound to package[0][core:L12-15]
+[n3279:1848386] Rank 20 bound to package[0][core:L16-19]
+[n3400:3903789] Rank 27 bound to package[0][core:L12-15]
+[n3400:3903789] Rank 28 bound to package[0][core:L16-19]
+[n3400:3903789] Rank 29 bound to package[1][core:L20-23]
+[n3400:3903789] Rank 31 bound to package[1][core:L36-39]
+[n3279:1848386] Rank 18 bound to package[0][core:L8-11]
+[n3279:1848386] Rank 21 bound to package[1][core:L20-23]
+[n3279:1848386] Rank 22 bound to package[1][core:L24-27]
+[n3400:3903789] Rank 30 bound to package[1][core:L24-27]
+[n3279:1848386] Rank 23 bound to package[1][core:L28-31]
+[n3277:3354170] Rank 8 bound to package[0][core:L0-3]
+[n3277:3354170] Rank 13 bound to package[1][core:L20-23]
+[n3277:3354170] Rank 10 bound to package[0][core:L8-11]
+[n3277:3354170] Rank 11 bound to package[0][core:L12-15]
+[n3277:3354170] Rank 9 bound to package[0][core:L4-7]
+[n3277:3354170] Rank 12 bound to package[0][core:L16-19]
+[n3277:3354170] Rank 15 bound to package[1][core:L28-31]
+[n3277:3354170] Rank 14 bound to package[1][core:L24-27]
+level 1 thread 0x14b0a7b30f80 affinity 16
+level 1 thread 0x14b03c8ac700 affinity 17
+level 1 thread 0x14b03c6ab700 affinity 18
+level 1 thread 0x14b03c4aa700 affinity 19
+level 1 thread 0x1535caffef80 affinity 24
+level 1 thread 0x1535b8284700 affinity 25
+level 1 thread 0x153561ee0700 affinity 26
+level 1 thread 0x153561cdf700 affinity 27
+level 1 thread 0x150bab4b6f80 affinity 20
+level 1 thread 0x150b40c64700 affinity 21
+level 1 thread 0x150b40a63700 affinity 22
+level 1 thread 0x150b40862700 affinity 23
+level 1 thread 0x14b08ae41f80 affinity 8
+level 1 thread 0x14b01f6e0700 affinity 9
+level 1 thread 0x14b01f4df700 affinity 10
+level 1 thread 0x14b01f2de700 affinity 11
+level 1 thread 0x14c27a6c8f80 affinity 0
+level 1 thread 0x14c20daae700 affinity 1
+level 1 thread 0x14c20d8ad700 affinity 2
+level 1 thread 0x14c20d6ac700 affinity 3
+level 1 thread 0x14cfc9263f80 affinity 12
+level 1 thread 0x14cfb46f8700 affinity 13
+level 1 thread 0x14cfb44f7700 affinity 14
+level 1 thread 0x14cfb42f6700 affinity 15
+level 1 thread 0x152dee3a8f80 affinity 4
+level 1 thread 0x152ddc274700 affinity 5
+level 1 thread 0x152d82a95700 affinity 6
+level 1 thread 0x152d82894700 affinity 7
+level 1 thread 0x15195c5bef80 affinity 36
+level 1 thread 0x15194828b700 affinity 37
+level 1 thread 0x1518f38b0700 affinity 38
+level 1 thread 0x1518f36af700 affinity 39
+level 1 thread 0x14bd68116f80 affinity 8
+level 1 thread 0x14bcfcc97700 affinity 9
+level 1 thread 0x14bcfca96700 affinity 10
+level 1 thread 0x14bcfc895700 affinity 11
+level 1 thread 0x154a0b698f80 affinity 12
+level 1 thread 0x1549f837c700 affinity 13
+level 1 thread 0x1549a0096700 affinity 14
+level 1 thread 0x15499fe95700 affinity 15
+level 1 thread 0x145a279fbf80 affinity 0
+level 1 thread 0x145a142c0700 affinity 1
+level 1 thread 0x1459bac96700 affinity 2
+level 1 thread 0x1459baa95700 affinity 3
+level 1 thread 0x145d5845bf80 affinity 4
+level 1 thread 0x145ced0b0700 affinity 5
+level 1 thread 0x145ceceaf700 affinity 6
+level 1 thread 0x145ceccae700 affinity 7
+level 1 thread 0x145b3077cf80 affinity 12
+level 1 thread 0x145ac54c9700 affinity 13
+level 1 thread 0x145ac52c8700 affinity 14
+level 1 thread 0x145ac50c7700 affinity 15
+level 1 thread 0x14750e066f80 affinity 8
+level 1 thread 0x1474fc34a700 affinity 9
+level 1 thread 0x1474a2a95700 affinity 10
+level 1 thread 0x1474a2894700 affinity 11
+level 1 thread 0x14ac71bbff80 affinity 20
+level 1 thread 0x14ac074e3700 affinity 21
+level 1 thread 0x14ac072e2700 affinity 22
+level 1 thread 0x14ac070e1700 affinity 23
+level 1 thread 0x146014deaf80 affinity 20
+level 1 thread 0x145faa4b0700 affinity 21
+level 1 thread 0x145faa2af700 affinity 22
+level 1 thread 0x145faa0ae700 affinity 23
+level 1 thread 0x151ca7b39f80 affinity 4
+level 1 thread 0x151c3c8ac700 affinity 5
+level 1 thread 0x151c3c6ab700 affinity 6
+level 1 thread 0x151c3c4aa700 affinity 7
+level 1 thread 0x145749ca8f80 affinity 24
+level 1 thread 0x145734502700 affinity 25
+level 1 thread 0x145734301700 affinity 26
+level 1 thread 0x1456e08e3700 affinity 27
+level 1 thread 0x14d924e93f80 affinity 16
+level 1 thread 0x14d910329700 affinity 17
+level 1 thread 0x14d8b98e2700 affinity 18
+level 1 thread 0x14d8b96e1700 affinity 19
+level 1 thread 0x147d0ea43f80 affinity 28
+level 1 thread 0x147ca5ee4700 affinity 29
+level 1 thread 0x147ca5ce3700 affinity 30
+level 1 thread 0x147ca5ae2700 affinity 31
+level 1 thread 0x147cfc6a3f80 affinity 12
+level 1 thread 0x147c912fc700 affinity 13
+level 1 thread 0x147c910fb700 affinity 14
+level 1 thread 0x147c90efa700 affinity 15
+level 1 thread 0x150d2f922f80 affinity 4
+level 1 thread 0x150cc44af700 affinity 5
+level 1 thread 0x150cc42ae700 affinity 6
+level 1 thread 0x150cc40ad700 affinity 7
+level 1 thread 0x1547c73aff80 affinity 16
+level 1 thread 0x15475c096700 affinity 17
+level 1 thread 0x15475be95700 affinity 18
+level 1 thread 0x15475bc94700 affinity 19
+level 1 thread 0x1537ed677f80 affinity 8
+level 1 thread 0x1537d8308700 affinity 9
+level 1 thread 0x1537820e3700 affinity 10
+level 1 thread 0x153781ee2700 affinity 11
+level 1 thread 0x14a38918ef80 affinity 24
+level 1 thread 0x14a374210700 affinity 25
+level 1 thread 0x14a3200e2700 affinity 26
+level 1 thread 0x14a31fee1700 affinity 27
+level 1 thread 0x14567e28af80 affinity 20
+level 1 thread 0x14566831b700 affinity 21
+level 1 thread 0x1456138b2700 affinity 22
+level 1 thread 0x1456136b1700 affinity 23
+level 1 thread 0x154335291f80 affinity 0
+level 1 thread 0x154320307700 affinity 1
+level 1 thread 0x1542c84e2700 affinity 2
+level 1 thread 0x1542c82e1700 affinity 3
+level 1 thread 0x149a6a2f7f80 affinity 28
+level 1 thread 0x149a54393700 affinity 29
+level 1 thread 0x149a014e4700 affinity 30
+level 1 thread 0x149a012e3700 affinity 31
+level 1 thread 0x151ba7487f80 affinity 28
+level 1 thread 0x151b3e896700 affinity 29
+level 1 thread 0x151b3e695700 affinity 30
+level 1 thread 0x151b3e494700 affinity 31
+level 1 thread 0x1469ac581f80 affinity 16
+level 1 thread 0x146998273700 affinity 17
+level 1 thread 0x1469937cd700 affinity 18
+level 1 thread 0x1469935cc700 affinity 19
+level 1 thread 0x1503898d1f80 affinity 0
+level 1 thread 0x150378299700 affinity 1
+level 1 thread 0x15031ca7b700 affinity 2
+level 1 thread 0x15031c87a700 affinity 3
+level 1 thread 0x14a07578af80 affinity 24
+level 1 thread 0x14a064275700 affinity 25
+level 1 thread 0x14a00c67b700 affinity 26
+level 1 thread 0x14a00c47a700 affinity 27
+=== Cell-centered 3D gradient: MPI + OpenMP CPU ===
+Decomposition = Y
+N = 1024
+MPI_ranks = 32
+OMP_threads_per_rank = 4
+dx =   9.7656250000000000E-04
+L_inf =   3.9425888786521901E-05
+L1 =   2.2569321693758878E-05
+L2 =   2.4143668402492590E-05
+Relative_L2 =   6.2749136744905779E-06
+Expected_Relative_L2 =   6.2749136745532397E-06
+FDM_seconds =   2.27615029E-01
+Numerical_seconds =   3.07625385E-01
+Application_seconds =   7.42960654E-01
+Initialization_seconds =   1.49581298E-01
+Norm_seconds =   5.07139061E-01
+Verification: PASS

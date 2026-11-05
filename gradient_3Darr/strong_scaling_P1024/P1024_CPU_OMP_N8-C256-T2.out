@@ -1,0 +1,428 @@
+N=1024 nodes=8 ranks=128 ranks_per_node=16 threads_per_rank=2
+Node=n3434 CPU model= AMD EPYC 9654 96-Core Processor
+MPI_mapping=ppr:16:node:PE=2
+[n3434:1781300] Rank 0 bound to package[0][core:L0-1]
+[n3434:1781300] Rank 1 bound to package[0][core:L2-3]
+[n3434:1781300] Rank 2 bound to package[0][core:L4-5]
+[n3434:1781300] Rank 3 bound to package[0][core:L6-7]
+[n3434:1781300] Rank 4 bound to package[0][core:L8-9]
+[n3434:1781300] Rank 5 bound to package[0][core:L10-11]
+[n3434:1781300] Rank 6 bound to package[0][core:L12-13]
+[n3434:1781300] Rank 7 bound to package[0][core:L14-15]
+[n3434:1781300] Rank 8 bound to package[0][core:L16-17]
+[n3434:1781300] Rank 9 bound to package[0][core:L18-19]
+[n3434:1781300] Rank 10 bound to package[0][core:L21-22]
+[n3434:1781300] Rank 11 bound to package[0][core:L23,25]
+[n3434:1781300] Rank 12 bound to package[0][core:L26-27]
+[n3434:1781300] Rank 13 bound to package[0][core:L30-31]
+[n3434:1781300] Rank 14 bound to package[0][core:L32-33]
+[n3434:1781300] Rank 15 bound to package[0][core:L34-35]
+[n3500:1759782] Rank 112 bound to package[0][core:L40-41]
+[n3500:1759782] Rank 113 bound to package[0][core:L42-43]
+[n3500:1759782] Rank 115 bound to package[0][core:L46-47]
+[n3500:1759782] Rank 116 bound to package[0][core:L48-49]
+[n3500:1759782] Rank 118 bound to package[0][core:L52-53]
+[n3500:1759782] Rank 117 bound to package[0][core:L50-51]
+[n3500:1759782] Rank 119 bound to package[0][core:L54-55]
+[n3500:1759782] Rank 114 bound to package[0][core:L44-45]
+[n3500:1759782] Rank 120 bound to package[0][core:L56-57]
+[n3500:1759782] Rank 121 bound to package[0][core:L58-59]
+[n3500:1759782] Rank 122 bound to package[0][core:L60-61]
+[n3500:1759782] Rank 123 bound to package[0][core:L62-63]
+[n3500:1759782] Rank 124 bound to package[0][core:L64-65]
+[n3500:1759782] Rank 125 bound to package[0][core:L66-67]
+[n3500:1759782] Rank 126 bound to package[0][core:L68-69]
+[n3500:1759782] Rank 127 bound to package[0][core:L70-71]
+[n3436:3971214] Rank 18 bound to package[0][core:L4-5]
+[n3436:3971214] Rank 16 bound to package[0][core:L0-1]
+[n3492:2753942] Rank 64 bound to package[0][core:L20-21]
+[n3436:3971214] Rank 23 bound to package[0][core:L49-50]
+[n3492:2753942] Rank 68 bound to package[0][core:L28-29]
+[n3492:2753942] Rank 71 bound to package[0][core:L34-35]
+[n3436:3971214] Rank 25 bound to package[0][core:L53,55]
+[n3436:3971214] Rank 26 bound to package[0][core:L56-57]
+[n3436:3971214] Rank 27 bound to package[0][core:L58-59]
+[n3436:3971214] Rank 21 bound to package[0][core:L39,46]
+[n3492:2753942] Rank 73 bound to package[0][core:L38-39]
+[n3436:3971214] Rank 24 bound to package[0][core:L51-52]
+[n3492:2753942] Rank 74 bound to package[0][core:L40-41]
+[n3492:2753942] Rank 65 bound to package[0][core:L22-23]
+[n3492:2753942] Rank 72 bound to package[0][core:L36-37]
+[n3492:2753942] Rank 67 bound to package[0][core:L26-27]
+[n3436:3971214] Rank 17 bound to package[0][core:L2-3]
+[n3436:3971214] Rank 22 bound to package[0][core:L47-48]
+[n3492:2753942] Rank 70 bound to package[0][core:L32-33]
+[n3436:3971214] Rank 20 bound to package[0][core:L37-38]
+[n3492:2753942] Rank 69 bound to package[0][core:L30-31]
+[n3436:3971214] Rank 19 bound to package[0][core:L6-7]
+[n3492:2753942] Rank 66 bound to package[0][core:L24-25]
+[n3436:3971214] Rank 28 bound to package[0][core:L62-63]
+[n3492:2753942] Rank 75 bound to package[0][core:L42-43]
+[n3436:3971214] Rank 29 bound to package[0][core:L64-65]
+[n3492:2753942] Rank 76 bound to package[0][core:L44-45]
+[n3436:3971214] Rank 30 bound to package[0][core:L66-67]
+[n3492:2753942] Rank 77 bound to package[0][core:L46-47]
+[n3436:3971214] Rank 31 bound to package[0][core:L69-70]
+[n3492:2753942] Rank 78 bound to package[0][core:L48-49]
+[n3492:2753942] Rank 79 bound to package[0][core:L50-51]
+[n3477:2227366] Rank 55 bound to package[0][core:L14-15]
+[n3477:2227366] Rank 52 bound to package[0][core:L8-9]
+[n3477:2227366] Rank 51 bound to package[0][core:L6-7]
+[n3477:2227366] Rank 56 bound to package[0][core:L16-17]
+[n3477:2227366] Rank 53 bound to package[0][core:L10-11]
+[n3477:2227366] Rank 48 bound to package[0][core:L0-1]
+[n3477:2227366] Rank 50 bound to package[0][core:L4-5]
+[n3477:2227366] Rank 57 bound to package[0][core:L18-19]
+[n3477:2227366] Rank 49 bound to package[0][core:L2-3]
+[n3477:2227366] Rank 59 bound to package[0][core:L22-23]
+[n3477:2227366] Rank 54 bound to package[0][core:L12-13]
+[n3477:2227366] Rank 58 bound to package[0][core:L20-21]
+[n3477:2227366] Rank 60 bound to package[0][core:L24-25]
+[n3477:2227366] Rank 61 bound to package[0][core:L26-27]
+[n3477:2227366] Rank 62 bound to package[0][core:L28-29]
+[n3477:2227366] Rank 63 bound to package[0][core:L30-31]
+[n3444:1915827] Rank 32 bound to package[0][core:L58-59]
+[n3444:1915827] Rank 42 bound to package[1][core:L116-117]
+[n3444:1915827] Rank 37 bound to package[0][core:L82-83]
+[n3444:1915827] Rank 39 bound to package[1][core:L110-111]
+[n3444:1915827] Rank 40 bound to package[1][core:L112-113]
+[n3444:1915827] Rank 38 bound to package[0][core:L84-85]
+[n3444:1915827] Rank 41 bound to package[1][core:L114-115]
+[n3444:1915827] Rank 33 bound to package[0][core:L74-75]
+[n3444:1915827] Rank 43 bound to package[1][core:L118-119]
+[n3444:1915827] Rank 34 bound to package[0][core:L76-77]
+[n3444:1915827] Rank 36 bound to package[0][core:L80-81]
+[n3444:1915827] Rank 46 bound to package[1][core:L124-125]
+[n3444:1915827] Rank 44 bound to package[1][core:L120-121]
+[n3444:1915827] Rank 45 bound to package[1][core:L122-123]
+[n3444:1915827] Rank 35 bound to package[0][core:L78-79]
+[n3444:1915827] Rank 47 bound to package[1][core:L126-127]
+[n3493:1824237] Rank 82 bound to package[0][core:L4-5]
+[n3493:1824237] Rank 88 bound to package[0][core:L16-17]
+[n3493:1824237] Rank 89 bound to package[0][core:L18-19]
+[n3493:1824237] Rank 91 bound to package[0][core:L22-23]
+[n3493:1824237] Rank 81 bound to package[0][core:L2-3]
+[n3493:1824237] Rank 87 bound to package[0][core:L14-15]
+[n3493:1824237] Rank 90 bound to package[0][core:L20-21]
+[n3493:1824237] Rank 85 bound to package[0][core:L10-11]
+[n3493:1824237] Rank 86 bound to package[0][core:L12-13]
+[n3493:1824237] Rank 93 bound to package[0][core:L26-27]
+[n3493:1824237] Rank 80 bound to package[0][core:L0-1]
+[n3493:1824237] Rank 94 bound to package[0][core:L28-29]
+[n3493:1824237] Rank 92 bound to package[0][core:L24-25]
+[n3493:1824237] Rank 84 bound to package[0][core:L8-9]
+[n3493:1824237] Rank 95 bound to package[0][core:L32-33]
+[n3493:1824237] Rank 83 bound to package[0][core:L6-7]
+[n3498:1564282] Rank 107 bound to package[0][core:L54-55]
+[n3498:1564282] Rank 103 bound to package[0][core:L46-47]
+[n3498:1564282] Rank 100 bound to package[0][core:L40-41]
+[n3498:1564282] Rank 96 bound to package[0][core:L32-33]
+[n3498:1564282] Rank 106 bound to package[0][core:L52-53]
+[n3498:1564282] Rank 105 bound to package[0][core:L50-51]
+[n3498:1564282] Rank 101 bound to package[0][core:L42-43]
+[n3498:1564282] Rank 102 bound to package[0][core:L44-45]
+[n3498:1564282] Rank 104 bound to package[0][core:L48-49]
+[n3498:1564282] Rank 98 bound to package[0][core:L36-37]
+[n3498:1564282] Rank 97 bound to package[0][core:L34-35]
+[n3498:1564282] Rank 99 bound to package[0][core:L38-39]
+[n3498:1564282] Rank 108 bound to package[0][core:L56-57]
+[n3498:1564282] Rank 109 bound to package[0][core:L58-59]
+[n3498:1564282] Rank 110 bound to package[0][core:L60-61]
+[n3498:1564282] Rank 111 bound to package[0][core:L62-63]
+level 1 thread 0x14f021fdbd00 affinity 2
+level 1 thread 0x14efd97a7700 affinity 3
+level 1 thread 0x14ffad856d00 affinity 0
+level 1 thread 0x14ff944c2700 affinity 1
+level 1 thread 0x145817a86d00 affinity 4
+level 1 thread 0x1457cf279700 affinity 5
+level 1 thread 0x14803cb39d00 affinity 6
+level 1 thread 0x147ff4325700 affinity 7
+level 1 thread 0x14590f43ad00 affinity 32
+level 1 thread 0x1458f44a5700 affinity 33
+level 1 thread 0x154c11c5ed00 affinity 34
+level 1 thread 0x154bc97a7700 affinity 35
+level 1 thread 0x15210efc1d00 affinity 26
+level 1 thread 0x1520c6ba7700 affinity 27
+level 1 thread 0x147c98a28d00 affinity 30
+level 1 thread 0x147c80294700 affinity 31
+level 1 thread 0x155003f41d00 affinity 16
+level 1 thread 0x154fbbaf3700 affinity 17
+level 1 thread 0x1512cd101d00 affinity 18
+level 1 thread 0x151284ba6700 affinity 19
+level 1 thread 0x14a62948cd00 affinity 12
+level 1 thread 0x14a5e0b8d700 affinity 13
+level 1 thread 0x14de8383ad00 affinity 14
+level 1 thread 0x14de3b341700 affinity 15
+level 1 thread 0x1539741f6d00 affinity 10
+level 1 thread 0x15395c290700 affinity 11
+level 1 thread 0x153bc41e6d00 affinity 23
+level 1 thread 0x153bac287700 affinity 25
+level 1 thread 0x154b2e3c0d00 affinity 8
+level 1 thread 0x154b147f8700 affinity 9
+level 1 thread 0x146bf2193d00 affinity 21
+level 1 thread 0x146bd85ff700 affinity 22
+level 1 thread 0x14f673fa9d00 affinity 56
+level 1 thread 0x14f62bb73700 affinity 57
+level 1 thread 0x150df771cd00 affinity 8
+level 1 thread 0x150daf2c1700 affinity 9
+level 1 thread 0x152005563d00 affinity 26
+level 1 thread 0x151fbce57700 affinity 27
+level 1 thread 0x148533830d00 affinity 62
+level 1 thread 0x1484eb341700 affinity 63
+level 1 thread 0x152d3ad6bd00 affinity 118
+level 1 thread 0x152d205c0700 affinity 119
+level 1 thread 0x1462c76fdd00 affinity 48
+level 1 thread 0x14627f2c1700 affinity 49
+level 1 thread 0x14586a6b5d00 affinity 8
+level 1 thread 0x14585031c700 affinity 9
+level 1 thread 0x14e9e9723d00 affinity 68
+level 1 thread 0x14e9d038b700 affinity 69
+level 1 thread 0x151004539d00 affinity 24
+level 1 thread 0x150fbbfa7700 affinity 25
+level 1 thread 0x14af3f048d00 affinity 28
+level 1 thread 0x14aef6ba7700 affinity 29
+level 1 thread 0x1548a111bd00 affinity 56
+level 1 thread 0x154858ba6700 affinity 57
+level 1 thread 0x14b4d2246d00 affinity 110
+level 1 thread 0x14b4b8265700 affinity 111
+level 1 thread 0x14f4b4d65d00 affinity 52
+level 1 thread 0x14f49c5d4700 affinity 53
+level 1 thread 0x14ef61eb9d00 affinity 10
+level 1 thread 0x14ef48325700 affinity 11
+level 1 thread 0x14ecda5c7d00 affinity 66
+level 1 thread 0x14ecc022d700 affinity 67
+level 1 thread 0x152527a97d00 affinity 30
+level 1 thread 0x1524df6a4700 affinity 31
+level 1 thread 0x15160d605d00 affinity 20
+level 1 thread 0x1515f426e700 affinity 21
+level 1 thread 0x15055972cd00 affinity 6
+level 1 thread 0x150540394700 affinity 7
+level 1 thread 0x14c6b98c4d00 affinity 122
+level 1 thread 0x14c67978d700 affinity 123
+level 1 thread 0x1529f6d28d00 affinity 54
+level 1 thread 0x1529dc593700 affinity 55
+level 1 thread 0x14a1e58ced00 affinity 4
+level 1 thread 0x14a1cc53a700 affinity 5
+level 1 thread 0x146eace4ed00 affinity 70
+level 1 thread 0x146e946b7700 affinity 71
+level 1 thread 0x14fb3ccf9d00 affinity 12
+level 1 thread 0x14fb24565700 affinity 13
+level 1 thread 0x14ddcfbf1d00 affinity 22
+level 1 thread 0x14dd877a6700 affinity 23
+level 1 thread 0x1537bbe75d00 affinity 2
+level 1 thread 0x153773a87700 affinity 3
+level 1 thread 0x15265747cd00 affinity 82
+level 1 thread 0x15263c52e700 affinity 83
+level 1 thread 0x1462cfb3ad00 affinity 34
+level 1 thread 0x1462876da700 affinity 35
+level 1 thread 0x1501c77abd00 affinity 6
+level 1 thread 0x15017f341700 affinity 7
+level 1 thread 0x148b85819d00 affinity 62
+level 1 thread 0x148b6c481700 affinity 63
+level 1 thread 0x1547f7b96d00 affinity 2
+level 1 thread 0x1547af75a700 affinity 3
+level 1 thread 0x150b02547d00 affinity 24
+level 1 thread 0x150ab9fa8700 affinity 25
+level 1 thread 0x147a02a60d00 affinity 58
+level 1 thread 0x1479e82cd700 affinity 59
+level 1 thread 0x1500fe91ad00 affinity 80
+level 1 thread 0x1500c17a6700 affinity 81
+level 1 thread 0x152f1700ed00 affinity 44
+level 1 thread 0x152eceba7700 affinity 45
+level 1 thread 0x14d402db5d00 affinity 14
+level 1 thread 0x14d3e861f700 affinity 15
+level 1 thread 0x1504b3f31d00 affinity 52
+level 1 thread 0x15046baf3700 affinity 53
+level 1 thread 0x14be5616fd00 affinity 0
+level 1 thread 0x14be3c5d9700 affinity 1
+level 1 thread 0x14b9f78b2d00 affinity 46
+level 1 thread 0x14b9af341700 affinity 47
+level 1 thread 0x1540dc6e0d00 affinity 49
+level 1 thread 0x1540c034a700 affinity 50
+level 1 thread 0x154bd56abd00 affinity 78
+level 1 thread 0x154bbc35a700 affinity 79
+level 1 thread 0x14abf0d0bd00 affinity 40
+level 1 thread 0x14aba8727700 affinity 41
+level 1 thread 0x15101be7ed00 affinity 18
+level 1 thread 0x150fd3a87700 affinity 19
+level 1 thread 0x1494acfe2d00 affinity 54
+level 1 thread 0x149464ba6700 affinity 55
+level 1 thread 0x15526eecfd00 affinity 20
+level 1 thread 0x15525473b700 affinity 21
+level 1 thread 0x15498f645d00 affinity 44
+level 1 thread 0x15494724c700 affinity 45
+level 1 thread 0x14eef3509d00 affinity 66
+level 1 thread 0x14eed8574700 affinity 67
+level 1 thread 0x14beeb50ed00 affinity 74
+level 1 thread 0x14bed05bc700 affinity 75
+level 1 thread 0x14aa8fc1ad00 affinity 46
+level 1 thread 0x14aa4775a700 affinity 47
+level 1 thread 0x151faf383d00 affinity 16
+level 1 thread 0x151f943e8700 affinity 17
+level 1 thread 0x1517872fed00 affinity 48
+level 1 thread 0x15176c366700 affinity 49
+level 1 thread 0x15146e5c1d00 affinity 22
+level 1 thread 0x151454251700 affinity 23
+level 1 thread 0x14a3ce82cd00 affinity 50
+level 1 thread 0x14a3863a6700 affinity 51
+level 1 thread 0x1504ec4b4d00 affinity 69
+level 1 thread 0x1504a3f8c700 affinity 70
+level 1 thread 0x1522c3c5fd00 affinity 124
+level 1 thread 0x152283fa8700 affinity 125
+level 1 thread 0x1518bc87cd00 affinity 32
+level 1 thread 0x151873ba3700 affinity 33
+level 1 thread 0x1485904a7d00 affinity 22
+level 1 thread 0x148547f8c700 affinity 23
+level 1 thread 0x14ae4dc6bd00 affinity 50
+level 1 thread 0x14ae057a7700 affinity 51
+level 1 thread 0x1518792ffd00 affinity 18
+level 1 thread 0x151830f02700 affinity 19
+level 1 thread 0x14c942e88d00 affinity 36
+level 1 thread 0x14c9286f4700 affinity 37
+level 1 thread 0x147f8cff6d00 affinity 0
+level 1 thread 0x147f443a5700 affinity 1
+level 1 thread 0x146a3f01dd00 affinity 76
+level 1 thread 0x146a1e3fe700 affinity 77
+level 1 thread 0x155436765d00 affinity 60
+level 1 thread 0x1553ee326700 affinity 61
+level 1 thread 0x15486b780d00 affinity 0
+level 1 thread 0x154822b3f700 affinity 1
+level 1 thread 0x15062d1d2d00 affinity 42
+level 1 thread 0x150614240700 affinity 43
+level 1 thread 0x1499b7d49d00 affinity 4
+level 1 thread 0x1499a0203700 affinity 5
+level 1 thread 0x14b1b45ebd00 affinity 32
+level 1 thread 0x14b198274700 affinity 33
+level 1 thread 0x149bed901d00 affinity 4
+level 1 thread 0x149bd4569700 affinity 5
+level 1 thread 0x154be6ed0d00 affinity 114
+level 1 thread 0x154bcc33f700 affinity 115
+level 1 thread 0x14ee9f7bcd00 affinity 58
+level 1 thread 0x14ee57341700 affinity 59
+level 1 thread 0x152c13890d00 affinity 12
+level 1 thread 0x152bcb341700 affinity 13
+level 1 thread 0x150aecb86d00 affinity 44
+level 1 thread 0x150ad43f5700 affinity 45
+level 1 thread 0x14c12abf1d00 affinity 10
+level 1 thread 0x14c11045a700 affinity 11
+level 1 thread 0x14658a9a5d00 affinity 38
+level 1 thread 0x146570213700 affinity 39
+level 1 thread 0x14e5103e4d00 affinity 51
+level 1 thread 0x14e4c7f8c700 affinity 52
+level 1 thread 0x145fa3c60d00 affinity 116
+level 1 thread 0x145f63f41700 affinity 117
+level 1 thread 0x1530bc571d00 affinity 62
+level 1 thread 0x153073f8c700 affinity 63
+level 1 thread 0x14cec7150d00 affinity 20
+level 1 thread 0x14ce7eba7700 affinity 21
+level 1 thread 0x14b27fa8ad00 affinity 46
+level 1 thread 0x14b237692700 affinity 47
+level 1 thread 0x148a42cefd00 affinity 26
+level 1 thread 0x148a2855b700 affinity 27
+level 1 thread 0x14c5403ced00 affinity 40
+level 1 thread 0x14c51f7fe700 affinity 41
+level 1 thread 0x146d49a7fd00 affinity 37
+level 1 thread 0x146d306e8700 affinity 38
+level 1 thread 0x15509f502d00 affinity 112
+level 1 thread 0x15505f7a7700 affinity 113
+level 1 thread 0x14649c128d00 affinity 36
+level 1 thread 0x146453b73700 affinity 37
+level 1 thread 0x154ad379ad00 affinity 2
+level 1 thread 0x154a8b341700 affinity 3
+level 1 thread 0x14f4437d5d00 affinity 58
+level 1 thread 0x14f3fb341700 affinity 59
+level 1 thread 0x153bc3f9cd00 affinity 28
+level 1 thread 0x153b7bb73700 affinity 29
+level 1 thread 0x146d571ead00 affinity 34
+level 1 thread 0x146d3c253700 affinity 35
+level 1 thread 0x151f83b03d00 affinity 39
+level 1 thread 0x151f62b7f700 affinity 46
+level 1 thread 0x14975f059d00 affinity 84
+level 1 thread 0x149721fa7700 affinity 85
+level 1 thread 0x153bc2d2ed00 affinity 42
+level 1 thread 0x153ba859c700 affinity 43
+level 1 thread 0x149f24e1dd00 affinity 28
+level 1 thread 0x149f0c688700 affinity 29
+level 1 thread 0x154445466d00 affinity 64
+level 1 thread 0x1543fcfa6700 affinity 65
+level 1 thread 0x152ed4e79d00 affinity 14
+level 1 thread 0x152ebc6e5700 affinity 15
+level 1 thread 0x153e58c7cd00 affinity 42
+level 1 thread 0x153e37fff700 affinity 43
+level 1 thread 0x14b668fd7d00 affinity 53
+level 1 thread 0x14b647fff700 affinity 55
+level 1 thread 0x14a3d311fd00 affinity 126
+level 1 thread 0x14a3937a7700 affinity 127
+level 1 thread 0x14a3d1384d00 affinity 38
+level 1 thread 0x14a388f26700 affinity 39
+level 1 thread 0x14cb07dfcd00 affinity 24
+level 1 thread 0x14caf02b5700 affinity 25
+level 1 thread 0x14d6c9175d00 affinity 60
+level 1 thread 0x14d680ba6700 affinity 61
+level 1 thread 0x149b69a0cd00 affinity 6
+level 1 thread 0x149b5067a700 affinity 7
+level 1 thread 0x14e57fc8bd00 affinity 30
+level 1 thread 0x14e55ebff700 affinity 31
+level 1 thread 0x1499392e7d00 affinity 47
+level 1 thread 0x14991836d700 affinity 48
+level 1 thread 0x154ae4d46d00 affinity 120
+level 1 thread 0x154ac85cc700 affinity 121
+level 1 thread 0x1483d2743d00 affinity 56
+level 1 thread 0x14838a326700 affinity 57
+level 1 thread 0x14ea68cfdd00 affinity 26
+level 1 thread 0x14ea50565700 affinity 27
+level 1 thread 0x149bbc2a2d00 affinity 40
+level 1 thread 0x149ba0307700 affinity 41
+level 1 thread 0x1540cfcbad00 affinity 16
+level 1 thread 0x1540877a6700 affinity 17
+level 1 thread 0x14c2d4d49d00 affinity 48
+level 1 thread 0x14c28c7a8700 affinity 49
+level 1 thread 0x147cb888dd00 affinity 64
+level 1 thread 0x147c703a5700 affinity 65
+level 1 thread 0x154685747d00 affinity 58
+level 1 thread 0x154646724700 affinity 59
+level 1 thread 0x15454a3edd00 affinity 32
+level 1 thread 0x154501fa8700 affinity 33
+level 1 thread 0x145a3745bd00 affinity 50
+level 1 thread 0x145a1c4c1700 affinity 51
+=== Cell-centered 3D gradient: MPI + OpenMP CPU ===
+Decomposition = Y
+N = 1024
+MPI_ranks = 128
+OMP_threads_per_rank = 2
+dx =   9.7656250000000000E-04
+L_inf =   3.9425888786521901E-05
+L1 =   2.2569321693758146E-05
+L2 =   2.4143668402490195E-05
+Relative_L2 =   6.2749136744889067E-06
+Expected_Relative_L2 =   6.2749136745532397E-06
+FDM_seconds =   8.19242970E-02
+Numerical_seconds =   1.22191967E-01
+Application_seconds =   3.65083391E-01
+Initialization_seconds =   8.22251750E-02
+Norm_seconds =   2.30943931E-01
+Verification: PASS
+[1793623511.217531] [n3434:1781332:0]           mpool.c:55   UCX  WARN  object 0x1661380 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.217677] [n3434:1781332:0]           mpool.c:55   UCX  WARN  object 0x16614c0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.217681] [n3434:1781332:0]           mpool.c:55   UCX  WARN  object 0x1661600 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.224462] [n3500:1759810:0]           mpool.c:55   UCX  WARN  object 0x2177e80 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.224482] [n3500:1759810:0]           mpool.c:55   UCX  WARN  object 0x2177fc0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.224486] [n3500:1759810:0]           mpool.c:55   UCX  WARN  object 0x2178240 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.230457] [n3492:2753987:0]           mpool.c:55   UCX  WARN  object 0x1190c80 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.230480] [n3492:2753987:0]           mpool.c:55   UCX  WARN  object 0x1190dc0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.230484] [n3492:2753987:0]           mpool.c:55   UCX  WARN  object 0x1191040 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.232242] [n3477:2227399:0]           mpool.c:55   UCX  WARN  object 0x10fddc0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.232262] [n3477:2227399:0]           mpool.c:55   UCX  WARN  object 0x10fdf00 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.232268] [n3477:2227399:0]           mpool.c:55   UCX  WARN  object 0x10fe040 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.233264] [n3436:3971260:0]           mpool.c:55   UCX  WARN  object 0x1443c80 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.233286] [n3436:3971260:0]           mpool.c:55   UCX  WARN  object 0x1443dc0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.233290] [n3436:3971260:0]           mpool.c:55   UCX  WARN  object 0x1444040 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.237307] [n3444:1915872:0]           mpool.c:55   UCX  WARN  object 0x2bc3c80 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.237332] [n3444:1915872:0]           mpool.c:55   UCX  WARN  object 0x2bc3dc0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.237336] [n3444:1915872:0]           mpool.c:55   UCX  WARN  object 0x2bc4040 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.253116] [n3493:1824275:0]           mpool.c:55   UCX  WARN  object 0x1aefdc0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.253154] [n3493:1824275:0]           mpool.c:55   UCX  WARN  object 0x1aeff00 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.253161] [n3493:1824275:0]           mpool.c:55   UCX  WARN  object 0x1af0040 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.253912] [n3498:1564313:0]           mpool.c:55   UCX  WARN  object 0xf3fdc0 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.253948] [n3498:1564313:0]           mpool.c:55   UCX  WARN  object 0xf3ff00 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests
+[1793623511.253955] [n3498:1564313:0]           mpool.c:55   UCX  WARN  object 0xf40040 {{cb|rcv_tag} recv length 12 host memory} was not returned to mpool ucp_requests

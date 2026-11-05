@@ -1,0 +1,71 @@
+N=1024
+Nodes=1
+MPI_ranks=16
+Threads_per_rank=2
+CPU_workers=32
+MPI_mapping=ppr:16:node:PE=2
+[n3489:2120532] Rank 0 bound to package[1][core:L98-99]
+[n3489:2120532] Rank 1 bound to package[1][core:L100-101]
+[n3489:2120532] Rank 2 bound to package[1][core:L102-103]
+[n3489:2120532] Rank 3 bound to package[1][core:L104-105]
+[n3489:2120532] Rank 4 bound to package[1][core:L106-107]
+[n3489:2120532] Rank 5 bound to package[1][core:L108-109]
+[n3489:2120532] Rank 6 bound to package[1][core:L110-111]
+[n3489:2120532] Rank 7 bound to package[1][core:L144-145]
+[n3489:2120532] Rank 8 bound to package[1][core:L156-157]
+[n3489:2120532] Rank 9 bound to package[1][core:L158-159]
+[n3489:2120532] Rank 10 bound to package[1][core:L160-161]
+[n3489:2120532] Rank 11 bound to package[1][core:L162-163]
+[n3489:2120532] Rank 12 bound to package[1][core:L164-165]
+[n3489:2120532] Rank 13 bound to package[1][core:L166-167]
+[n3489:2120532] Rank 14 bound to package[1][core:L168-169]
+[n3489:2120532] Rank 15 bound to package[1][core:L170-171]
+level 1 thread 0x14da4613dd00 affinity 162
+level 1 thread 0x14d986250700 affinity 163
+level 1 thread 0x148c3efcad00 affinity 110
+level 1 thread 0x148b7e8ae700 affinity 111
+level 1 thread 0x1540256a0d00 affinity 106
+level 1 thread 0x153f67c8c700 affinity 107
+level 1 thread 0x152e0d3fbd00 affinity 166
+level 1 thread 0x152d4f5d2700 affinity 167
+level 1 thread 0x14c7ee788d00 affinity 98
+level 1 thread 0x14c72f8fe700 affinity 99
+level 1 thread 0x147b47886d00 affinity 102
+level 1 thread 0x147a89e73700 affinity 103
+level 1 thread 0x14ba45e53d00 affinity 104
+level 1 thread 0x14b9873e3700 affinity 105
+level 1 thread 0x146c68295d00 affinity 108
+level 1 thread 0x146ba8ba7700 affinity 109
+level 1 thread 0x14eec25c8d00 affinity 100
+level 1 thread 0x14ee00a2a700 affinity 101
+level 1 thread 0x15222d265d00 affinity 164
+level 1 thread 0x15216befb700 affinity 165
+level 1 thread 0x14f392124d00 affinity 160
+level 1 thread 0x14f2d264e700 affinity 161
+level 1 thread 0x14f90966ad00 affinity 168
+level 1 thread 0x14f8476a8700 affinity 169
+level 1 thread 0x145d8e72dd00 affinity 156
+level 1 thread 0x145cd04e2700 affinity 157
+level 1 thread 0x14d12eb57d00 affinity 158
+level 1 thread 0x14d06e435700 affinity 159
+level 1 thread 0x145c63413d00 affinity 144
+level 1 thread 0x145ba145f700 affinity 145
+level 1 thread 0x1483b5767d00 affinity 170
+level 1 thread 0x1482f64c6700 affinity 171
+=== Cell-centered 3D gradient: MPI + OpenMP CPU ===
+Decomposition = Y
+N = 1024
+MPI_ranks = 16
+OMP_threads_per_rank = 2
+dx =   9.7656250000000000E-04
+L_inf =   3.9425888786521901E-05
+L1 =   2.2569321693755198E-05
+L2 =   2.4143668402489985E-05
+Relative_L2 =   6.2749136744908938E-06
+Expected_Relative_L2 =   6.2749136745532397E-06
+FDM_seconds =   4.63789346E-01
+Numerical_seconds =   4.82185341E-01
+Application_seconds =   1.50128894E+00
+Initialization_seconds =   3.38407452E-01
+Norm_seconds =   8.92673077E-01
+Verification: PASS
