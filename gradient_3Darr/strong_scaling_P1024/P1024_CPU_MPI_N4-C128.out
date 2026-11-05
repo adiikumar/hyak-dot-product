@@ -1,0 +1,16 @@
+N=1024 nodes=4 ranks=128 threads=1
+Executable=/mmfs1/gscratch/ferrante/adityk7/test/gradient_3Darr/gradient_CPU_MPI/.job_build/42731613/gradient_CPU_MPI
+=== Cell-centered 3D gradient: MPI CPU ===
+Decomposition = Y
+N = 1024
+MPI_ranks = 128
+dx =   9.7656250000000000E-04
+L_inf =   3.9425888786521901E-05
+L1 =   2.2569321693758261E-05
+L2 =   2.4143668402491842E-05
+Relative_L2 =   6.2749136744899502E-06
+Expected_Relative_L2 =   6.2749136745532397E-06
+FDM_seconds =   1.03928136E-01
+Numerical_seconds =   1.79625661E-01
+Application_seconds =   4.78821896E-01
+Verification: PASS

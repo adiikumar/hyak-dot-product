@@ -6,7 +6,7 @@ old/
 *.sqlite
 slurm-*.out
 # job output in this folder, but keep the saved ones in results/
-*.out
+# *.out
 !results/*.out
 # compiled binaries
 dot_serial
