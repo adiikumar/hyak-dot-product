@@ -2,7 +2,7 @@ import re
 from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.ticker import ScalarFormatter, NullLocator
+from matplotlib.ticker import ScalarFormatter, NullLocator, LogLocator, NullFormatter
 
 def read_application_seconds(path):
     text = Path(path).read_text()
@@ -52,40 +52,55 @@ for i, N in enumerate(num_nodes):
                 raise ValueError(f"Verification failed: {path}")
             times[i] = read_application_seconds(path)
 
-
-
-
-
 fig, ax = plt.subplots()
-plt.loglog(num_nodes, np.ones(len(num_nodes)) * times_CPU_serial, label="CPU_serial")
-plt.loglog(num_nodes, times_CPU_MPI, label="CPU_MPI", marker="o")
-plt.loglog(num_nodes, times_CPU_OMP_T1, label="CPU_OMP_T1", marker="o")
-plt.loglog(num_nodes, times_CPU_OMP_T2, label="CPU_OMP_T2", marker="o")
-plt.loglog(num_nodes, times_CPU_OMP_T4, label="CPU_OMP_T4", marker="x")
-plt.loglog(num_nodes, times_GPU_G1, label="GPU_G1", marker="o")
-plt.loglog(num_nodes, times_GPU_G2, label="GPU_G2", marker="o")
-plt.loglog(num_nodes, times_GPU_G4, label="GPU_G4", marker="o")
-ax.set_title(
-    "Strong scaling of gradient of 3D arrays with grid 1024$^3$;\n"
-    "MPI: num_cpus per node = 32;\n"
-    "GPUs (using OpenMP): num_gpus per node = 1, 2, 4"
-)
-plt.xlabel("Number of nodes")
-plt.ylabel("Wall time (seconds)")
 
+# perfect strong scaling: slope -1 through the 1-node MPI time
+ideal = times_CPU_MPI[0] * num_nodes[0] / num_nodes
+ax.loglog(num_nodes, ideal, "k--", linewidth=1, label="Ideal strong scaling")
+
+# perfect weak scaling: flat line from P=1 to P=8 at the 1-node MPI time
+ax.loglog([1, 8], [times_CPU_MPI[0]] * 2, "k:", linewidth=1, label="Ideal weak scaling")
+
+# (label, data, color, marker)
+series = [
+    ("MPI (#CPUs/#Nodes=32)",                  times_CPU_MPI,    "C1", "+"),
+    #
+    ("MPI + OMP(#Threads/#CPUs=1)",    times_CPU_OMP_T1, "C2", "o"),
+    ("MPI + OMP(#Threads/#CPUs=2)",   times_CPU_OMP_T2, "C3", "o"),
+    ("MPI + OMP(#Threads/#CPUs=4)",   times_CPU_OMP_T4, "C4", "o"),
+    #
+    ("MPI + OMP(#GPUs/#Nodes=1)",  times_GPU_G1,     "C5", "x"),
+    ("MPI + OMP(#GPUs/#Nodes=2)", times_GPU_G2,     "C6", "x"),
+    ("MPI + OMP(#GPUs/#Nodes=4)", times_GPU_G4,     "C7", "x"),
+]
+for label, t, color, marker in series:
+    ax.loglog(num_nodes, t, label=label, color=color, marker=marker)
+
+ax.set_title(
+    "Scaling of the gradient of 3D array with problem size 1024$^3$"
+)
+ax.set_xlabel("#Nodes")
+ax.set_ylabel("Elapsed wall time (seconds)")
+
+# x: plain 1, 2, 4, 8
 ax.set_xlim(num_nodes[0] / 1.05, num_nodes[-1] * 1.05)
 ax.set_xticks(num_nodes)
 ax.xaxis.set_major_formatter(ScalarFormatter())
 ax.xaxis.set_minor_locator(NullLocator())
 
-ax.set_ylim(np.min(times_CPU_OMP_T1) / 1.25, times_CPU_serial * 1.25)
-ax.set_yticks(np.concatenate((np.array([times_CPU_serial]), times_CPU_OMP_T1, times_CPU_OMP_T2, times_CPU_OMP_T4)))
-#ax.set_yticks(np.concatenate((np.array([times_CPU_serial]), times_CPU_OMP_T1, times_CPU_OMP_T2, times_CPU_OMP_T4, times_GPU_G1, times_GPU_G2, times_GPU_G4)))
+# y: crop to data + ideal line, plain decimal labels, unlabeled minor ticks
+y = np.concatenate([t for _, t, _, _ in series] + [ideal])
+ax.set_ylim(np.nanmin(y) / 1.15, np.nanmax(y) * 1.15)
+ax.set_yticks([0.3, 0.5, 1, 2])              # edit if your range changes
 ax.yaxis.set_major_formatter(ScalarFormatter())
-ax.yaxis.set_minor_locator(NullLocator())
+ax.yaxis.set_minor_locator(LogLocator(subs="auto"))
+ax.yaxis.set_minor_formatter(NullFormatter())
 
-plt.tight_layout()
+# paper style: full box, inward ticks on all four sides
+ax.tick_params(which="both", direction="in", top=True, right=True)
 
-plt.legend()
-plt.grid()
-plt.savefig("strong_scaling_P1024.svg", dpi=300)
+ax.grid(which="major", alpha=0.5)
+
+ax.legend(loc="upper center", bbox_to_anchor=(0.5, -0.15), ncol=3,
+          fontsize=8, frameon=False)
+plt.savefig("strong_scaling_P1024.svg", bbox_inches="tight")
